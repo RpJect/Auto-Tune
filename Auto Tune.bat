@@ -217,7 +217,7 @@ ECHO START /MIN "Uninstall" "CMD.EXE" /C RD /S /Q "C:/temp"        >> "C:/temp\m
 
 
 :Mor4
-ECHO TITLE SOS Mode >> "C:/temp\mor3=4.cmd
+ECHO TITLE SOS Mode >> "C:/temp\mor4.cmd
 ECHO @ECHO OFF ^& CLS ^& NET SESSION ^>NUL 2^>^&1       >> "C:/temp\mor4.cmd
 ECHO @REM This Software is created By RpJect.  >> "C:/temp\mor4.cmd
 ECHO @REM https://github.com/RpJect/Auto-Tune  >> "C:/temp\mor4.cmd
