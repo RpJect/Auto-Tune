@@ -1,5 +1,5 @@
 @TITLE ::::::::::::::::::::::::::::::::::::::::::::::: AUTO TUNE :::::::::::::::::::::::::::::::::::::::::::::::
-@color 02
+@color 03
 @ECHO OFF
 REM This Software is created By RpJect
 REM https://github.com/RpJect/Auto-Tune
@@ -19,7 +19,7 @@ REM The Software version 1.0
 
 
 @echo off
-
+net.exe session 1>NUL 2>NUL || goto :not_admin
 if "%SAFEBOOT_OPTION%"=="" goto normal
 
 echo This computer is in safe mode!
@@ -92,11 +92,13 @@ Exit
 MKDir "C:/temp
 
 :Mor1
+ECHO TITLE Normal Mode >> "C:/temp\mor1.cmd
 ECHO @ECHO OFF ^& CLS ^& NET SESSION ^>NUL 2^>^&1       >> "C:/temp\mor1.cmd
 ECHO @REM This Software is created By RpJect.  >> "C:/temp\mor1.cmd
 ECHO @REM https://github.com/RpJect/Auto-Tune  >> "C:/temp\mor1.cmd
 ECHO @REM This Program Uses Microsoft Windows Built-in Tools  >> "C:/temp\mor1.cmd
 ECHO @SETLOCAL  >> "C:/temp\mor1.cmd
+ECHO mschedexe.exe start >> "C:/temp\mor1.cmd
 ECHO del %temp%\*.* /s /q   >> "C:/temp\mor1.cmd
 ECHO @START /B /W cleanmgr /slevel Low /nocleanup  >> "C:/temp\mor1.cmd
 ECHO @ECHO Good Jop The Fix is Done    >> "C:/temp\mor1.cmd
@@ -106,11 +108,13 @@ ECHO START /MIN "Uninstall" "CMD.EXE" /C RD /S /Q "C:/temp"        >> "C:/temp\m
 
 
 :Mor2
+ECHO TITLE Performance Mode >> "C:/temp\mor2.cmd
 ECHO @ECHO OFF ^& CLS ^& NET SESSION ^>NUL 2^>^&1       >> "C:/temp\mor2.cmd
 ECHO @REM This Software is created By RpJect.  >> "C:/temp\mor2.cmd
 ECHO @REM https://github.com/RpJect/Auto-Tune  >> "C:/temp\mor2.cmd
 ECHO @REM This Program Uses Microsoft Windows Built-in Tools  >> "C:/temp\mor2.cmd
 ECHO @SETLOCAL  >> "C:/temp\mor2.cmd
+ECHO mschedexe.exe start >> "C:/temp\mor2.cmd
 ECHO @START /B /W cleanmgr.exe /d C: /VERYLOWDISK  >> "C:/temp\mor2.cmd
 ECHO @START /B /W Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase  >> "C:/temp\mor2.cmd
 ECHO del %temp%\*.* /s /q   >> "C:/temp\mor2.cmd
@@ -128,6 +132,7 @@ ECHO START /MIN "Uninstall" "CMD.EXE" /C RD /S /Q "C:/temp"        >> "C:/temp\m
 
 
 :Mor3
+ECHO TITLE Advanced Mode >> "C:/temp\mor3.cmd
 ECHO msg %username% Save Your Work Now  >> "C:/temp\mor3.cmd
 ECHO @ECHO OFF ^& CLS ^& NET SESSION ^>NUL 2^>^&1       >> "C:/temp\mor3.cmd
 ECHO @REM This Software is created By RpJect.  >> "C:/temp\mor3.cmd
@@ -212,6 +217,7 @@ ECHO START /MIN "Uninstall" "CMD.EXE" /C RD /S /Q "C:/temp"        >> "C:/temp\m
 
 
 :Mor4
+ECHO TITLE SOS Mode >> "C:/temp\mor3=4.cmd
 ECHO @ECHO OFF ^& CLS ^& NET SESSION ^>NUL 2^>^&1       >> "C:/temp\mor4.cmd
 ECHO @REM This Software is created By RpJect.  >> "C:/temp\mor4.cmd
 ECHO @REM https://github.com/RpJect/Auto-Tune  >> "C:/temp\mor4.cmd
@@ -222,14 +228,12 @@ ECHO @START /B /W cleanmgr.exe /d C: /VERYLOWDISK  >> "C:/temp\mor4.cmd
 ECHO @START /B /W Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase  >> "C:/temp\mor4.cmd
 ECHO del %temp%\*.* /s /q   >> "C:/temp\mor4.cmd
 ECHO del /F /Q %WINDIR%\logs\CBS\*    >> "C:/temp\mor4.cmd
-ECHO chkdsk /scan /perf  >> "C:/temp\mor4.cmd
-ECHO sfc /scannow  >> "C:/temp\mor4.cmd
-ECHO DISM.exe /Online /Cleanup-image /Restorehealth  >> "C:/temp\mor4.cmd
-ECHO sfc /scannow  >> "C:/temp\mor4.cmd
-ECHO defrag /C /H /v  >> "C:/temp\mor4.cmd
-ECHO mschedexe.exe start >> "C:/temp\mor4.cmd
+ECHO @START /B /W chkdsk /scan /perf  >> "C:/temp\mor4.cmd
+ECHO @START /B /W sfc /scannow  >> "C:/temp\mor4.cmd
+ECHO @START /B /W DISM.exe /Online /Cleanup-image /Restorehealth  >> "C:/temp\mor4.cmd
+ECHO @START /B /W sfc /scannow  >> "C:/temp\mor4.cmd
+ECHO @START /B /W defrag /C /H /v  >> "C:/temp\mor4.cmd
 ECHO @ECHO Good Jop The Fix is Done    >> "C:/temp\mor4.cmd
-ECHO @pause    >> "C:/temp\mor4.cmd
 ECHO ECHO. ^& ECHO SOS Mode Complete! >> "C:/temp\mor4.cmd
 ECHO msg %username% Attention !! Save Your Work Now  >> "C:/temp\mor4.cmd
 ECHO shutdown.exe /r  >> "C:/temp\mor4.cmd
@@ -356,3 +360,9 @@ start "CMD.EXE" "c:/temp\mor4.cmd"
 
 
 @exit
+
+
+:not_admin
+echo ERROR: Please run as a local administrator.
+msg %username% Error !! Run as Administrator !!
+exit /b 1
