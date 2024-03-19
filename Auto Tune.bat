@@ -55,6 +55,14 @@ if %Mode%==safe goto S
 if %Mode%==S goto S
 if %Mode%==s goto S
 
+
+cls
+echo Invalid input! Please type 'Y' to start In Normal or 'S' to start In Safemode
+msg %username% Invalid input! Try Again 
+
+goto normal
+
+
 @pause
 
 @exit
@@ -145,7 +153,7 @@ ECHO START /MIN "Uninstall" "CMD.EXE" /C RD /S /Q "C:/temp"        >> "C:/temp\m
 
 :Mor3
 ECHO TITLE Advanced Mode >> "C:/temp\mor3.cmd
-ECHO msg %username% Save Your Work Now  >> "C:/temp\mor3.cmd
+ECHO msg %username% /w Save Your Work Now  >> "C:/temp\mor3.cmd
 ECHO @ECHO OFF ^& CLS ^& NET SESSION ^>NUL 2^>^&1       >> "C:/temp\mor3.cmd
 ECHO @REM This Software is created By RpJect.  >> "C:/temp\mor3.cmd
 ECHO @REM https://github.com/RpJect/Auto-Tune  >> "C:/temp\mor3.cmd
@@ -245,7 +253,7 @@ ECHO @REM This Software is created By RpJect.  >> "C:/temp\mor4.cmd
 ECHO @REM https://github.com/RpJect/Auto-Tune  >> "C:/temp\mor4.cmd
 ECHO @REM This Program Uses Microsoft Windows Built-in Tools  >> "C:/temp\mor4.cmd
 ECHO @SETLOCAL  >> "C:/temp\mor4.cmd
-ECHO msg %username% Save Your Work Now  >> "C:/temp\mor4.cmd
+ECHO msg %username% /w Save Your Work Now  >> "C:/temp\mor4.cmd
 ECHO @ECHO (1/9)  >> "C:/temp\mor4.cmd 
 ECHO cleanmgr.exe /d C: /VERYLOWDISK  >> "C:/temp\mor4.cmd
 ECHO @ECHO (2/9)  >> "C:/temp\mor4.cmd  
