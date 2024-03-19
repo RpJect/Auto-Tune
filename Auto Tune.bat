@@ -98,8 +98,11 @@ ECHO @REM This Software is created By RpJect.  >> "C:/temp\mor1.cmd
 ECHO @REM https://github.com/RpJect/Auto-Tune  >> "C:/temp\mor1.cmd
 ECHO @REM This Program Uses Microsoft Windows Built-in Tools  >> "C:/temp\mor1.cmd
 ECHO @SETLOCAL  >> "C:/temp\mor1.cmd
+ECHO @ECHO (1/3)  >> "C:/temp\mor1.cmd
 ECHO mschedexe.exe start >> "C:/temp\mor1.cmd
+ECHO @ECHO (2/3)  >> "C:/temp\mor1.cmd
 ECHO del %temp%\*.* /s /q   >> "C:/temp\mor1.cmd
+ECHO @ECHO (3/3)  >> "C:/temp\mor1.cmd
 ECHO @START /B /W cleanmgr /slevel Low /nocleanup  >> "C:/temp\mor1.cmd
 ECHO @ECHO Good Jop The Fix is Done    >> "C:/temp\mor1.cmd
 ECHO @pause    >> "C:/temp\mor1.cmd
@@ -114,14 +117,23 @@ ECHO @REM This Software is created By RpJect.  >> "C:/temp\mor2.cmd
 ECHO @REM https://github.com/RpJect/Auto-Tune  >> "C:/temp\mor2.cmd
 ECHO @REM This Program Uses Microsoft Windows Built-in Tools  >> "C:/temp\mor2.cmd
 ECHO @SETLOCAL  >> "C:/temp\mor2.cmd
+ECHO @ECHO (1/9)   >> "C:/temp\mor2.cmd
 ECHO mschedexe.exe start >> "C:/temp\mor2.cmd
-ECHO @START /B /W cleanmgr.exe /d C: /VERYLOWDISK  >> "C:/temp\mor2.cmd
+ECHO @ECHO (2/9)   >> "C:/temp\mor2.cmd
+ECHO cleanmgr.exe /d C: /VERYLOWDISK  >> "C:/temp\mor2.cmd
+ECHO @ECHO (3/9)   >> "C:/temp\mor2.cmd
 ECHO @START /B /W Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase  >> "C:/temp\mor2.cmd
+ECHO @ECHO (4/9)   >> "C:/temp\mor2.cmd
 ECHO del %temp%\*.* /s /q   >> "C:/temp\mor2.cmd
+ECHO @ECHO (5/9)   >> "C:/temp\mor2.cmd
 ECHO ipconfig /flushdns  >> "C:/temp\mor2.cmd
+ECHO @ECHO (6/9)   >> "C:/temp\mor2.cmd
 ECHO rundll32.exe inetcpl.cpl,ClearMyTracksByProcess 4351   >> "C:/temp\mor2.cmd
+ECHO @ECHO (7/9)   >> "C:/temp\mor2.cmd
 ECHO rmdir /S /Q %SystemDrive%\i386   >> "C:/temp\mor2.cmd
+ECHO @ECHO (8/9)   >> "C:/temp\mor2.cmd
 ECHO del /F /Q %WINDIR%\logs\CBS\*    >> "C:/temp\mor2.cmd
+ECHO @ECHO (9/9)   >> "C:/temp\mor2.cmd
 ECHO defrag /C /H /V  >> "C:/temp\mor2.cmd
 ECHO @ECHO Good Jop The Fix is Done    >> "C:/temp\mor2.cmd
 ECHO @pause    >> "C:/temp\mor2.cmd
@@ -138,16 +150,20 @@ ECHO @ECHO OFF ^& CLS ^& NET SESSION ^>NUL 2^>^&1       >> "C:/temp\mor3.cmd
 ECHO @REM This Software is created By RpJect.  >> "C:/temp\mor3.cmd
 ECHO @REM https://github.com/RpJect/Auto-Tune  >> "C:/temp\mor3.cmd
 ECHO @REM This Program Uses Microsoft Windows Built-in Tools  >> "C:/temp\mor3.cmd
+ECHO @ECHO (1/10)  >> "C:/temp\mor3.cmd 
 ECHO @START /B /W powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61   >> "C:/temp\mor3.cmd
 ECHO msg %username% Choose ultimate performance  >> "C:/temp\mor3.cmd
 ECHO powercfg.cpl  >> "C:/temp\mor3.cmd
+ECHO @ECHO (2/10)  >> "C:/temp\mor3.cmd 
 ECHO mschedexe.exe start >> "C:/temp\mor3.cmd
 ECHO @cleanmgr.exe /d C: /VERYLOWDISK  >> "C:/temp\mor3.cmd
 ECHO @Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase  >> "C:/temp\mor3.cmd
+ECHO @ECHO (3/10)  >> "C:/temp\mor3.cmd 
 ECHO @del %temp%\*.* /s /q   >> "C:/temp\mor3.cmd
 ECHO @START /B /W rundll32.exe inetcpl.cpl,ClearMyTracksByProcess 4351   >> "C:/temp\mor3.cmd
 ECHO @rmdir /S /Q %SystemDrive%\i386   >> "C:/temp\mor3.cmd
 ECHO @del /F /Q %WINDIR%\logs\CBS\*    >> "C:/temp\mor3.cmd
+ECHO @ECHO (4/10)  >> "C:/temp\mor3.cmd 
 ECHO @START /B /W netsh advfirewall firewall add rule name="telemetry_vortex.data.microsoft.com" dir=out action=block remoteip=191.232.139.254 enable=yes		>> "C:/temp\mor3.cmd
 ECHO @START /B /W netsh advfirewall firewall add rule name="telemetry_telecommand.telemetry.microsoft.com" dir=out action=block remoteip=65.55.252.92 enable=yes		>> "C:/temp\mor3.cmd
 ECHO @START /B /W netsh advfirewall firewall add rule name="telemetry_oca.telemetry.microsoft.com" dir=out action=block remoteip=65.55.252.63 enable=yes		>> "C:/temp\mor3.cmd
@@ -203,10 +219,16 @@ ECHO @START /B /W netsh advfirewall firewall add rule name="telemetry_ssw.live.c
 ECHO @START /B /W netsh advfirewall firewall add rule name="telemetry_statsfe1.ws.microsoft.com" dir=out action=block remoteip=134.170.115.60 enable=yes		>> "C:/temp\mor3.cmd
 ECHO @START /B /W netsh advfirewall firewall add rule name="telemetry_msnbot-65-55-108-23.search.msn.com" dir=out action=block remoteip=65.55.108.23 enable=yes		>> "C:/temp\mor3.cmd
 ECHO @START /B /W netsh advfirewall firewall add rule name="telemetry_a23-218-212-69.deploy.static.akamaitechnologies.com" dir=out action=block remoteip=23.218.212.69 enable=yes`		>> "C:/temp\mor3.cmd
+ECHO @ECHO (5/10)  >> "C:/temp\mor3.cmd 
 ECHO @START /B /W chkdsk /scan /perf >> "C:/temp\mor3.cmd
+ECHO @ECHO (6/10)  >> "C:/temp\mor3.cmd 
 ECHO @START /B /W sfc /scannow  >> "C:/temp\mor3.cmd
+ECHO @ECHO (7/10)  >> "C:/temp\mor3.cmd 
 ECHO @START /B /W DISM.exe /Online /Cleanup-image /Restorehealth  >> "C:/temp\mor3.cmd
+ECHO @ECHO (8/10)  >> "C:/temp\mor3.cmd 
+ECHO @ECHO (9/10)  >> "C:/temp\mor3.cmd 
 ECHO @START /B /W sfc /scannow  >> "C:/temp\mor3.cmd
+ECHO @ECHO (10/10)  >> "C:/temp\mor3.cmd 
 ECHO @START /B /W Defrag /C /B /O /V  >> "C:/temp\mor3.cmd
 ECHO msg %username% Attention !! Save Your Work Now  >> "C:/temp\mor3.cmd
 ECHO @ECHO Good Jop The Fix is Done    >> "C:/temp\mor3.cmd
@@ -224,14 +246,23 @@ ECHO @REM https://github.com/RpJect/Auto-Tune  >> "C:/temp\mor4.cmd
 ECHO @REM This Program Uses Microsoft Windows Built-in Tools  >> "C:/temp\mor4.cmd
 ECHO @SETLOCAL  >> "C:/temp\mor4.cmd
 ECHO msg %username% Save Your Work Now  >> "C:/temp\mor4.cmd
-ECHO @START /B /W cleanmgr.exe /d C: /VERYLOWDISK  >> "C:/temp\mor4.cmd
+ECHO @ECHO (1/9)  >> "C:/temp\mor4.cmd 
+ECHO cleanmgr.exe /d C: /VERYLOWDISK  >> "C:/temp\mor4.cmd
+ECHO @ECHO (2/9)  >> "C:/temp\mor4.cmd  
 ECHO @START /B /W Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase  >> "C:/temp\mor4.cmd
+ECHO @ECHO (3/9)  >> "C:/temp\mor4.cmd  
 ECHO del %temp%\*.* /s /q   >> "C:/temp\mor4.cmd
+ECHO @ECHO (4/9)  >> "C:/temp\mor4.cmd
 ECHO del /F /Q %WINDIR%\logs\CBS\*    >> "C:/temp\mor4.cmd
+ECHO @ECHO (5/9)  >> "C:/temp\mor4.cmd    
 ECHO @START /B /W chkdsk /scan /perf  >> "C:/temp\mor4.cmd
+ECHO @ECHO (6/9)  >> "C:/temp\mor4.cmd  
 ECHO @START /B /W sfc /scannow  >> "C:/temp\mor4.cmd
+ECHO @ECHO (7/9)  >> "C:/temp\mor4.cmd  
 ECHO @START /B /W DISM.exe /Online /Cleanup-image /Restorehealth  >> "C:/temp\mor4.cmd
+ECHO @ECHO (8/9)  >> "C:/temp\mor4.cmd  
 ECHO @START /B /W sfc /scannow  >> "C:/temp\mor4.cmd
+ECHO @ECHO (9/9)  >> "C:/temp\mor4.cmd 
 ECHO @START /B /W defrag /C /H /v  >> "C:/temp\mor4.cmd
 ECHO @ECHO Good Jop The Fix is Done    >> "C:/temp\mor4.cmd
 ECHO ECHO. ^& ECHO SOS Mode Complete! >> "C:/temp\mor4.cmd
