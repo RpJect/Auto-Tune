@@ -164,7 +164,6 @@ ECHO msg %username% Choose ultimate performance  >> "C:/temp\mor3.cmd
 ECHO powercfg.cpl  >> "C:/temp\mor3.cmd
 ECHO @ECHO (2/10)  >> "C:/temp\mor3.cmd 
 ECHO mschedexe.exe start >> "C:/temp\mor3.cmd
-ECHO @cleanmgr.exe /d C: /VERYLOWDISK  >> "C:/temp\mor3.cmd
 ECHO @Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase  >> "C:/temp\mor3.cmd
 ECHO @ECHO (3/10)  >> "C:/temp\mor3.cmd 
 ECHO @del %temp%\*.* /s /q   >> "C:/temp\mor3.cmd
@@ -255,7 +254,6 @@ ECHO @REM This Program Uses Microsoft Windows Built-in Tools  >> "C:/temp\mor4.c
 ECHO @SETLOCAL  >> "C:/temp\mor4.cmd
 ECHO msg %username% /w Save Your Work Now  >> "C:/temp\mor4.cmd
 ECHO @ECHO (1/9)  >> "C:/temp\mor4.cmd 
-ECHO cleanmgr.exe /d C: /VERYLOWDISK  >> "C:/temp\mor4.cmd
 ECHO @ECHO (2/9)  >> "C:/temp\mor4.cmd  
 ECHO @START /B /W Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase  >> "C:/temp\mor4.cmd
 ECHO @ECHO (3/9)  >> "C:/temp\mor4.cmd  
