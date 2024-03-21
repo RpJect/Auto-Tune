@@ -344,7 +344,7 @@ start "CMD.EXE" "%WINDIR%/temp\mor1.cmd"
 
 
 :2
-@START /HIGH wmic.exe /Namespace:\\root\default Path SystemRestore Call CreateRestorePoint "<My Restore Point Name >", 100, 7
+wmic.exe /Namespace:\\root\default Path SystemRestore Call CreateRestorePoint "<My Restore Point Name >", 100, 7
 
 start "CMD.EXE" "%WINDIR%/temp\mor2.cmd" 
 
@@ -357,7 +357,7 @@ start "CMD.EXE" "%WINDIR%/temp\mor2.cmd"
 
 
 :3
-@START /HIGH wmic.exe /Namespace:\\root\default Path SystemRestore Call CreateRestorePoint "<My Restore Point Name >", 100, 7
+wmic.exe /Namespace:\\root\default Path SystemRestore Call CreateRestorePoint "<My Restore Point Name >", 100, 7
 
 start "CMD.EXE" "%WINDIR%/temp\mor3.cmd" 
 
@@ -387,7 +387,7 @@ ipconfig /flushdns
 
 
 :4
-@START /HIGH wmic.exe /Namespace:\\root\default Path SystemRestore Call CreateRestorePoint "<My Restore Point Name >", 100, 7
+wmic.exe /Namespace:\\root\default Path SystemRestore Call CreateRestorePoint "<My Restore Point Name >", 100, 7
 
 start "CMD.EXE" "%WINDIR%/temp\mor4.cmd" 
 
