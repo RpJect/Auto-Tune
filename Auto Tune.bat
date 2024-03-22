@@ -112,7 +112,7 @@ ECHO @ECHO (2/3)  >> "%WINDIR%/temp\mor1.cmd
 ECHO del %temp%\*.* /s /q   >> "%WINDIR%/temp\mor1.cmd
 ECHO @ECHO (3/3)  >> "%WINDIR%/temp\mor1.cmd
 ECHO @START /B /W /HIGH cleanmgr /slevel Low /nocleanup  >> "%WINDIR%/temp\mor1.cmd
-ECHO @ECHO Good Jop The Fix is Done    >> "%WINDIR%/temp\mor1.cmd
+ECHO @ECHO Good Jop We Done Cleaning    >> "%WINDIR%/temp\mor1.cmd
 ECHO @pause    >> "%WINDIR%/temp\mor1.cmd
 ECHO ECHO. ^& ECHO Normal Mode Complete! >> "%WINDIR%/temp\mor1.cmd
 ECHO START /MIN "Uninstall" "CMD.EXE" /C RD /S /Q "%WINDIR%/temp"        >> "%WINDIR%/temp\mor1.cmd
@@ -253,22 +253,21 @@ ECHO @REM https://github.com/RpJect/Auto-Tune  >> "%WINDIR%/temp\mor4.cmd
 ECHO @REM This Program Uses Microsoft Windows Built-in Tools  >> "%WINDIR%/temp\mor4.cmd
 ECHO @SETLOCAL  >> "%WINDIR%/temp\mor4.cmd
 ECHO msg %username% /w Save Your Work Now  >> "%WINDIR%/temp\mor4.cmd
-ECHO @ECHO (1/9)  >> "%WINDIR%/temp\mor4.cmd 
-ECHO @ECHO (2/9)  >> "%WINDIR%/temp\mor4.cmd  
+ECHO @ECHO (1/8)  >> "%WINDIR%/temp\mor4.cmd  
 ECHO @START /B /W /HIGH  Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase  >> "%WINDIR%/temp\mor4.cmd
-ECHO @ECHO (3/9)  >> "%WINDIR%/temp\mor4.cmd  
+ECHO @ECHO (2/8)  >> "%WINDIR%/temp\mor4.cmd  
 ECHO del %temp%\*.* /s /q   >> "%WINDIR%/temp\mor4.cmd
-ECHO @ECHO (4/9)  >> "%WINDIR%/temp\mor4.cmd
+ECHO @ECHO (3/8)  >> "%WINDIR%/temp\mor4.cmd
 ECHO del /F /Q %WINDIR%\logs\CBS\*    >> "%WINDIR%/temp\mor4.cmd
-ECHO @ECHO (5/9)  >> "%WINDIR%/temp\mor4.cmd    
+ECHO @ECHO (4/8)  >> "%WINDIR%/temp\mor4.cmd    
 ECHO @START /B /W /HIGH chkdsk /scan /perf  >> "%WINDIR%/temp\mor4.cmd
-ECHO @ECHO (6/9)  >> "%WINDIR%/temp\mor4.cmd  
+ECHO @ECHO (5/8)  >> "%WINDIR%/temp\mor4.cmd  
 ECHO @START /B /W /HIGH sfc /scannow  >> "%WINDIR%/temp\mor4.cmd
-ECHO @ECHO (7/9)  >> "%WINDIR%/temp\mor4.cmd  
+ECHO @ECHO (6/8)  >> "%WINDIR%/temp\mor4.cmd  
 ECHO @START /B /W /HIGH DISM.exe /Online /Cleanup-image /Restorehealth  >> "%WINDIR%/temp\mor4.cmd
-ECHO @ECHO (8/9)  >> "%WINDIR%/temp\mor4.cmd  
+ECHO @ECHO (7/8)  >> "%WINDIR%/temp\mor4.cmd  
 ECHO @START /B /W /HIGH sfc /scannow  >> "%WINDIR%/temp\mor4.cmd
-ECHO @ECHO (9/9)  >> "%WINDIR%/temp\mor4.cmd 
+ECHO @ECHO (8/8)  >> "%WINDIR%/temp\mor4.cmd 
 ECHO @START /B /W /HIGH defrag /C /H /v  >> "%WINDIR%/temp\mor4.cmd
 ECHO @ECHO Good Jop The Fix is Done    >> "%WINDIR%/temp\mor4.cmd
 ECHO ECHO. ^& ECHO SOS Mode Complete! >> "%WINDIR%/temp\mor4.cmd
