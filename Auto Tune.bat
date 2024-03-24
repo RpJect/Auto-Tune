@@ -116,6 +116,7 @@ ECHO @ECHO Good Jop We Done Cleaning    >> "%WINDIR%/temp\mor1.cmd
 ECHO @pause    >> "%WINDIR%/temp\mor1.cmd
 ECHO ECHO. ^& ECHO Normal Mode Complete! >> "%WINDIR%/temp\mor1.cmd
 ECHO START /MIN "Uninstall" "CMD.EXE" /C RD /S /Q "%WINDIR%/temp"        >> "%WINDIR%/temp\mor1.cmd
+ECHO @exit        >> "%WINDIR%/temp\mor1.cmd
 
 
 :Mor2
@@ -147,6 +148,7 @@ ECHO @ECHO Good Jop The Fix is Done    >> "%WINDIR%/temp\mor2.cmd
 ECHO @pause    >> "%WINDIR%/temp\mor2.cmd
 ECHO ECHO. ^& ECHO Performance Mode Complete! >> "%WINDIR%/temp\mor2.cmd
 ECHO START /MIN "Uninstall" "CMD.EXE" /C RD /S /Q "%WINDIR%/temp"        >> "%WINDIR%/temp\mor2.cmd
+ECHO @exit        >> "%WINDIR%/temp\mor2.cmd
 
 
 
@@ -241,6 +243,7 @@ ECHO msg %username% Attention !! Save Your Work Now  >> "%WINDIR%/temp\mor3.cmd
 ECHO @ECHO Good Jop The Fix is Done    >> "%WINDIR%/temp\mor3.cmd
 ECHO ECHO. ^& ECHO Advanced Mode Complete! >> "%WINDIR%/temp\mor3.cmd
 ECHO START /MIN "Uninstall" "CMD.EXE" /C RD /S /Q "%WINDIR%/temp"        >> "%WINDIR%/temp\mor3.cmd
+ECHO @exit         >> "%WINDIR%/temp\mor3.cmd
 
 
 
@@ -274,6 +277,7 @@ ECHO ECHO. ^& ECHO SOS Mode Complete! >> "%WINDIR%/temp\mor4.cmd
 ECHO msg %username% Attention !! Save Your Work Now  >> "%WINDIR%/temp\mor4.cmd
 ECHO shutdown.exe /r  >> "%WINDIR%/temp\mor4.cmd
 ECHO START /MIN "Uninstall" "CMD.EXE" /C RD /S /Q "%WINDIR%/temp"        >> "%WINDIR%/temp\mor4.cmd
+ECHO @exit        >> "%WINDIR%/temp\mor4.cmd
 
 
 
@@ -302,15 +306,15 @@ ECHO START /MIN "Uninstall" "CMD.EXE" /C RD /S /Q "%WINDIR%/temp"        >> "%WI
 @echo.                              --------------------
 @echo.
 @echo.
-@echo                      Type      "A"    ::  Normal Mode :: { Quick And Fast }
+@echo                     Type      "A"    ::  Normal Mode :: { Quick And Fast }
 @echo.
-@echo                      Type      "B"    ::  Performance Mode  :: { Recommended }  
+@echo                     Type      "B"    ::  Performance Mode  :: { Recommended }  
 @echo.
-@echo                      Type      "C"    ::  Advanced Mode ::{ Long Time But Worth } "Need Shutdown"
+@echo                     Type      "C"    ::  Advanced Mode ::{ Long Time But Worth } "Shutdown"
 @echo.
-@echo                      Type      "D"    ::  SOS Mode  ::{ Fix All Windows Errors } "Need Restart"
+@echo                     Type      "D"    ::  SOS Mode  ::{ Fix All Windows Errors } "Restart"
 @echo.
-@echo                      Type      "E"    :: "Exit"
+@echo                     Type      "E"    :: "Exit"
 set/p "cho="
 if %cho%==A goto 1
 if %cho%==a goto 1
@@ -323,6 +327,9 @@ if %cho%==d goto 4
 if %cho%==E goto E
 if %cho%==e goto E
 
+:O
+echo Invalid input! Please Try Again Later
+msg %username% Invalid input! Try Again 
 
 :E
 
