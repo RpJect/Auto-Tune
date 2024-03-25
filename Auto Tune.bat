@@ -163,19 +163,19 @@ ECHO @ECHO OFF ^& CLS ^& NET SESSION ^>NUL 2^>^&1       >> "%WINDIR%/temp\mor3.c
 ECHO @REM This Software is created By RpJect.  >> "%WINDIR%/temp\mor3.cmd
 ECHO @REM https://github.com/RpJect/Auto-Tune  >> "%WINDIR%/temp\mor3.cmd
 ECHO @REM This Program Uses Microsoft Windows Built-in Tools  >> "%WINDIR%/temp\mor3.cmd
-ECHO @ECHO (1/10)  >> "%WINDIR%/temp\mor3.cmd 
+ECHO @ECHO (1/9)  >> "%WINDIR%/temp\mor3.cmd 
 ECHO @START /B /W /HIGH powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61   >> "%WINDIR%/temp\mor3.cmd
 ECHO msg %username% Choose ultimate performance  >> "%WINDIR%/temp\mor3.cmd
 ECHO powercfg.cpl  >> "%WINDIR%/temp\mor3.cmd
-ECHO @ECHO (2/10)  >> "%WINDIR%/temp\mor3.cmd 
+ECHO @ECHO (2/9)  >> "%WINDIR%/temp\mor3.cmd 
 ECHO mschedexe.exe start >> "%WINDIR%/temp\mor3.cmd
 ECHO @Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase  >> "%WINDIR%/temp\mor3.cmd
-ECHO @ECHO (3/10)  >> "%WINDIR%/temp\mor3.cmd 
+ECHO @ECHO (3/9)  >> "%WINDIR%/temp\mor3.cmd 
 ECHO @del %temp%\*.* /s /q   >> "%WINDIR%/temp\mor3.cmd
 ECHO @START /B /W /HIGH rundll32.exe inetcpl.cpl,ClearMyTracksByProcess 4351   >> "%WINDIR%/temp\mor3.cmd
 ECHO @rmdir /S /Q %SystemDrive%\i386   >> "%WINDIR%/temp\mor3.cmd
 ECHO @del /F /Q %WINDIR%\logs\CBS\*    >> "%WINDIR%/temp\mor3.cmd
-ECHO @ECHO (4/10)  >> "%WINDIR%/temp\mor3.cmd 
+ECHO @ECHO (4/9)  >> "%WINDIR%/temp\mor3.cmd 
 ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_vortex.data.microsoft.com" dir=out action=block remoteip=191.232.139.254 enable=yes		>> "%WINDIR%/temp\mor3.cmd
 ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_telecommand.telemetry.microsoft.com" dir=out action=block remoteip=65.55.252.92 enable=yes		>> "%WINDIR%/temp\mor3.cmd
 ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_oca.telemetry.microsoft.com" dir=out action=block remoteip=65.55.252.63 enable=yes		>> "%WINDIR%/temp\mor3.cmd
@@ -231,16 +231,15 @@ ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_ssw.
 ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_statsfe1.ws.microsoft.com" dir=out action=block remoteip=134.170.115.60 enable=yes		>> "%WINDIR%/temp\mor3.cmd
 ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_msnbot-65-55-108-23.search.msn.com" dir=out action=block remoteip=65.55.108.23 enable=yes		>> "%WINDIR%/temp\mor3.cmd
 ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_a23-218-212-69.deploy.static.akamaitechnologies.com" dir=out action=block remoteip=23.218.212.69 enable=yes`		>> "%WINDIR%/temp\mor3.cmd
-ECHO @ECHO (5/10)  >> "%WINDIR%/temp\mor3.cmd 
+ECHO @ECHO (5/9)  >> "%WINDIR%/temp\mor3.cmd 
 ECHO @START /B /W /HIGH chkdsk /scan /perf >> "%WINDIR%/temp\mor3.cmd
-ECHO @ECHO (6/10)  >> "%WINDIR%/temp\mor3.cmd 
+ECHO @ECHO (6/9)  >> "%WINDIR%/temp\mor3.cmd 
 ECHO @START /B /W /HIGH sfc /scannow  >> "%WINDIR%/temp\mor3.cmd
-ECHO @ECHO (7/10)  >> "%WINDIR%/temp\mor3.cmd 
+ECHO @ECHO (7/9)  >> "%WINDIR%/temp\mor3.cmd 
 ECHO @START /B /W /HIGH DISM.exe /Online /Cleanup-image /Restorehealth  >> "%WINDIR%/temp\mor3.cmd
-ECHO @ECHO (8/10)  >> "%WINDIR%/temp\mor3.cmd 
-ECHO @ECHO (9/10)  >> "%WINDIR%/temp\mor3.cmd 
+ECHO @ECHO (8/9)  >> "%WINDIR%/temp\mor3.cmd 
 ECHO @START /B /W /HIGH sfc /scannow  >> "%WINDIR%/temp\mor3.cmd
-ECHO @ECHO (10/10)  >> "%WINDIR%/temp\mor3.cmd 
+ECHO @ECHO (9/9)  >> "%WINDIR%/temp\mor3.cmd 
 ECHO @START /B /W /HIGH Defrag /C /B /O /V  >> "%WINDIR%/temp\mor3.cmd
 ECHO msg %username% Attention !! Save Your Work Now  >> "%WINDIR%/temp\mor3.cmd
 ECHO @ECHO Good Jop The Fix is Done    >> "%WINDIR%/temp\mor3.cmd
