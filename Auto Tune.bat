@@ -96,11 +96,13 @@ Exit
 @echo.                   We Recommended You To Open This Software In Safemode
 
 
-:1
+:Clean Remnant
+rd /q /s "C:/temp" 2>nul
+rd /q /s "%WINDIR%/temp" 2>nul
+MKDir "%WINDIR%/temp"
 
-MKDir "%WINDIR%/temp
 
-:Mor1
+:Normal Mode
 ECHO TITLE Normal Mode >> "%WINDIR%/temp\mor1.cmd
 ECHO @ECHO OFF ^& CLS ^& NET SESSION ^>NUL 2^>^&1       >> "%WINDIR%/temp\mor1.cmd
 ECHO @REM This Software is created By RpJect.  >> "%WINDIR%/temp\mor1.cmd
@@ -120,7 +122,7 @@ ECHO START /MIN "Uninstall" "CMD.EXE" /C RD /S /Q "%WINDIR%/temp"        >> "%WI
 ECHO @exit        >> "%WINDIR%/temp\mor1.cmd
 
 
-:Mor2
+:Performance Mode 
 ECHO TITLE Performance Mode >> "%WINDIR%/temp\mor2.cmd
 ECHO @ECHO OFF ^& CLS ^& NET SESSION ^>NUL 2^>^&1       >> "%WINDIR%/temp\mor2.cmd
 ECHO @REM This Software is created By RpJect.  >> "%WINDIR%/temp\mor2.cmd
@@ -154,7 +156,7 @@ ECHO @exit        >> "%WINDIR%/temp\mor2.cmd
 
 
 
-:Mor3
+:Advanced Mode
 ECHO TITLE Advanced Mode >> "%WINDIR%/temp\mor3.cmd
 ECHO msg %username% /w Save Your Work Now  >> "%WINDIR%/temp\mor3.cmd
 ECHO @ECHO OFF ^& CLS ^& NET SESSION ^>NUL 2^>^&1       >> "%WINDIR%/temp\mor3.cmd
@@ -249,7 +251,7 @@ ECHO @exit         >> "%WINDIR%/temp\mor3.cmd
 
 
 
-:Mor4
+:SOS Mode
 ECHO TITLE SOS Mode >> "%WINDIR%/temp\mor4.cmd
 ECHO @ECHO OFF ^& CLS ^& NET SESSION ^>NUL 2^>^&1       >> "%WINDIR%/temp\mor4.cmd
 ECHO @REM This Software is created By RpJect.  >> "%WINDIR%/temp\mor4.cmd
@@ -333,12 +335,13 @@ echo Invalid input! Please Try Again Later
 msg %username% Invalid input! Try Again 
 
 :E
-
+rd /q /s "%WINDIR%/temp" 2>nul
 @pause
 
 @exit
 
 ------------------------------------------------------------------------------------------------
+
 :1
 
 
