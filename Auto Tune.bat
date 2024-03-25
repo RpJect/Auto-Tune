@@ -19,7 +19,7 @@ REM The Software version 1.0
 
 
 @echo off
-net.exe session 1>NUL 2>NUL || goto :not_admin
+
 if "%SAFEBOOT_OPTION%"=="" goto normal
 
 echo This computer is in safe mode!
@@ -27,6 +27,7 @@ echo This computer is in safe mode!
 goto 2nd
 
 :normal
+net.exe session 1>NUL 2>NUL || goto :not_admin
 @echo.
 @echo.  ***************************************************************************************
 @echo.  ***************************************************************************************
