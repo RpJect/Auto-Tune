@@ -39,7 +39,7 @@ cls
 @echo.    ***************************************************************************************
 @echo.
 @ECHO                            This Software is created By RpJect.
-@echo                              AUTO TUNE Online Online version 1.1
+@echo                              AUTO TUNE Online version 1.1
 @ECHO                    This Program Uses Microsoft Windows Built-in Tools.
 @echo.                                  Work For Windows10
 @echo.
