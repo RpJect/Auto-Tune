@@ -48,20 +48,32 @@ cls
 @echo.                    We Recommended You To Open This Software In Safemode
 @echo.
 @echo.
-@echo Type "S" To Get In To Safemode "Recommended"
+@echo Type "Y" Yes Get Me In To Safemode "Recommended"
 @echo OR 
 timeout /t 3 /nobreak > NUL
-set/p   Mode="Type "Y" To Continue In Normalmode: "
-if %Mode%==y goto 2nd
-if %Mode%==Y goto 2nd
+set/p   Mode="Type "N" No Continue In Normalmode: "
+if %Mode%==y goto S
+if %Mode%==Y goto S
+if %Mode%==yes goto S
+if %Mode%==YES goto S
+if %Mode%==yEs goto S
+if %Mode%==Yes goto S
+if %Mode%==yeS goto S
+if %Mode%==YEs goto S
+if %Mode%==YeS goto S
+if %Mode%==yES goto S
 if %Mode%==Safe goto S
 if %Mode%==safe goto S
-if %Mode%==S goto S
-if %Mode%==s goto S
+if %Mode%==N goto 2nd
+if %Mode%==n goto 2nd
+if %Mode%==No goto 2nd
+if %Mode%==no goto 2nd
+if %Mode%==NO goto 2nd
+if %Mode%==nO goto 2nd
 
 
 cls
-echo Invalid input! Please type 'Y' to start In Normal or 'S' to start In Safemode
+echo Invalid input! Please type 'N' to start In Normal or 'Y' to start In Safemode
 msg %username% Invalid input! Try Again Later
 rd /q /s "C:/temp" 2>nul
 rd /q /s "%WINDIR%/temp" 2>nul
