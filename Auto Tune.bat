@@ -61,9 +61,10 @@ if %Mode%==s goto S
 cls
 echo Invalid input! Please type 'Y' to start In Normal or 'S' to start In Safemode
 msg %username% Invalid input! Try Again Later
-
-
-
+
+rd /q /s "C:/temp" 2>nul
+rd /q /s "%WINDIR%/temp" 2>nul
+MKDir "%WINDIR%/temp"
 
 @pause
 
