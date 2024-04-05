@@ -24,6 +24,7 @@ if "%SAFEBOOT_OPTION%"=="" goto normal
 
 echo This computer is in safe mode!
 
+msg %username% Now We are Going To Restart Your Device To Advanced Startup 
 goto 2nd
 
 :normal
@@ -59,9 +60,9 @@ if %Mode%==s goto S
 
 cls
 echo Invalid input! Please type 'Y' to start In Normal or 'S' to start In Safemode
-msg %username% Invalid input! Try Again 
+msg %username% Invalid input! Try Again Later
 
-goto normal
+
 
 
 @pause
