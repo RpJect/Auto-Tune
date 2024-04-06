@@ -23,7 +23,7 @@ REM The Software Online version 1.1
 if "%SAFEBOOT_OPTION%"=="" goto normal
 
 echo This computer is in safe mode!
-msg %username% Now We are Going To Restart Your Device To Advanced Startup 
+
 
 goto 2nd
 
@@ -92,6 +92,7 @@ MKDir "%WINDIR%/temp"
 ------------------------------------------------------------------------------------------------
 
 :S
+msg %username% Now We are Going To Restart Your Device To Advanced Startup 
 shutdown.exe /r /o
 
 Exit
