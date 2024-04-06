@@ -29,8 +29,9 @@ goto 2nd
 
 :normal
 net.exe session 1>NUL 2>NUL || goto :not_admin
-curl  -o AutoTune.bat -0 https://raw.githubusercontent.com/RIPJe/Auto.Tune/main/AutoTune.bat" 2>nul
-cls
+ECHO Update..
+set "filePath=%~f0"
+curl  -o "%filePath%" -0 https://raw.githubusercontent.com/RIPJe/Auto.Tune/main/AutoTune.bat"
 @echo.
 @echo.    ***************************************************************************************
 @echo.    ***************************************************************************************
@@ -64,6 +65,8 @@ if %Mode%==YeS goto S
 if %Mode%==yES goto S
 if %Mode%==Safe goto S
 if %Mode%==safe goto S
+if %Mode%==S goto S
+if %Mode%==s goto S
 if %Mode%==N goto 2nd
 if %Mode%==n goto 2nd
 if %Mode%==No goto 2nd
