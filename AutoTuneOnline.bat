@@ -31,7 +31,7 @@ goto 2nd
 net.exe session 1>NUL 2>NUL || goto :not_admin
 ECHO Update..
 set "filePath=%~f0"
-curl  -o "%filePath%" -0 https://raw.githubusercontent.com/RIPJe/Auto.Tune/main/AutoTune.bat"
+curl  -o "%filePath%" -0 https://raw.githubusercontent.com/RpJect/Auto-Tune/main/AutoTuneOnline.bat"
 @echo.
 @echo.    ***************************************************************************************
 @echo.    ***************************************************************************************
