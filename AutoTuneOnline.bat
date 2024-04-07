@@ -31,7 +31,7 @@ goto 2nd
 net.exe session 1>NUL 2>NUL || goto :not_admin
 ECHO Update..
 set "filePath=%~f0"
-curl  -o "%filePath%" -0 https://raw.githubusercontent.com/RpJect/Auto-Tune/main/AutoTuneOnline.bat"
+curl --connect-timeout 300  -o "%filePath%" -0  -# https://raw.githubusercontent.com/RpJect/Auto-Tune/main/AutoTuneOnline.bat"
 @echo.
 @echo.    ***************************************************************************************
 @echo.    ***************************************************************************************
@@ -92,7 +92,7 @@ MKDir "%WINDIR%/temp"
 ------------------------------------------------------------------------------------------------
 
 :S
-msg %username% Now We are Going To Restart Your Device To Advanced Startup 
+msg %username% Now We Are Going To Restart Your Device To Advanced Startup 
 shutdown.exe /r /o
 
 Exit
