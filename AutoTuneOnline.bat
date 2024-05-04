@@ -1,13 +1,15 @@
+<!-- :: Batch section
+@echo off
+setlocal
 @TITLE ::::::::::::::::::::::::::::::::::::::::::::::: AUTO TUNE :::::::::::::::::::::::::::::::::::::::::::::::
-@color 03
-@ECHO OFF
+
 REM This Software is created By RpJect
 REM https://github.com/RpJect/Auto-Tune
 REM
 REM This Program Uses Microsoft Windows Built-in Tools.
 REM To Fix All Your Proplem type.
 REM
-REM The Software Online version 1.1
+REM The Software Online version 2.0
 
 :: This Software is created By RpJect
 :: https://github.com/RpJect/Auto-Tune
@@ -15,91 +17,15 @@ REM The Software Online version 1.1
 :: This Program Uses Microsoft Windows Built-in Tools.
 :: To Fix All Your Proplem type.
 ::
-:: The Software Online version 1.1
+:: The Software Online version 2.0
 
-
-@echo off
-
-if "%SAFEBOOT_OPTION%"=="" goto normal
-
-echo This computer is in safe mode!
-
-
-goto 2nd
 
 :normal
 net.exe session 1>NUL 2>NUL || goto :not_admin
 ECHO Update..
 set "filePath=%~f0"
 curl --connect-timeout 300  -o "%filePath%" -0  -# https://raw.githubusercontent.com/RpJect/Auto-Tune/main/AutoTuneOnline.bat"
-@echo.
-@echo.    ***************************************************************************************
-@echo.    ***************************************************************************************
-@ECHO.    ********************* Tune Using built-in Microsoft Windows Tools *********************
-@echo.    ***************************************************************************************
-@echo.    ***************************************************************************************
-@echo.
-@ECHO                            This Software is created By RpJect.
-@echo                              AUTO TUNE Online version 1.1
-@ECHO                    This Program Uses Microsoft Windows Built-in Tools.
-@echo.                                  Work For Windows10
-@echo.
-@ECHO                     Before We Start And help your computer to Get Fixed.
-@echo.
-@echo.                    We Recommended You To Open This Software In Safemode
-@echo.
-@echo.
-@echo Type "Y" Yes Get Me In To Safemode "Recommended"
-@echo OR 
-timeout /t 3 /nobreak > NUL
-set/p   Mode="Type "N" No Continue In Normalmode: "
-if %Mode%==y goto S
-if %Mode%==Y goto S
-if %Mode%==yes goto S
-if %Mode%==YES goto S
-if %Mode%==yEs goto S
-if %Mode%==Yes goto S
-if %Mode%==yeS goto S
-if %Mode%==YEs goto S
-if %Mode%==YeS goto S
-if %Mode%==yES goto S
-if %Mode%==Safe goto S
-if %Mode%==safe goto S
-if %Mode%==S goto S
-if %Mode%==s goto S
-if %Mode%==N goto 2nd
-if %Mode%==n goto 2nd
-if %Mode%==No goto 2nd
-if %Mode%==no goto 2nd
-if %Mode%==NO goto 2nd
-if %Mode%==nO goto 2nd
-
-
-cls
-echo Invalid input! Please type 'N' to start In Normal or 'Y' to start In Safemode
-msg %username% Invalid input! Try Again Later
-rd /q /s "C:/temp" 2>nul
-rd /q /s "%WINDIR%/temp" 2>nul
-rd /q /s "%temp%" 2>nul
-MKDir "%WINDIR%/temp"
-
-
-
-@pause
-
-@exit
-
-------------------------------------------------------------------------------------------------
-
-:S
-msg %username% Now We Are Going To Restart Your Device To Advanced Startup 
-shutdown.exe /r /o
-
-Exit
-
-
-:2nd
-@color 02
+@color 03
 @cls
 @ECHO OFF
 @echo.
@@ -110,7 +36,7 @@ Exit
 @echo.  ***************************************************************************************
 @echo.
 @ECHO                              This Software is created By RpJect.
-@echo                                  AUTO TUNE Online version 1.1
+@echo                                 AUTO TUNE Online version 2.0
 @ECHO                       This Program Uses Microsoft Windows Built-in Tools.
 @ECHO                   Before We Start And help your computer to Get Fixed.
 @echo.                                   Work For Windows10
@@ -122,8 +48,7 @@ Exit
 rd /q /s "C:/temp" 2>nul
 rd /q /s "%WINDIR%/temp" 2>nul
 rd /q /s "%temp%" 2>nul
-MKDir "%WINDIR%/temp"
-
+MKDir "%WINDIR%/temp" 2>nul
 
 :Normal Mode
 ECHO TITLE Normal Mode >> "%WINDIR%/temp\mor1.cmd
@@ -221,15 +146,15 @@ ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_surv
 ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_watson.live.com" dir=out action=block remoteip=207.46.223.94 enable=yes		>> "%WINDIR%/temp\mor3.cmd
 ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_watson.microsoft.com" dir=out action=block remoteip=65.55.252.71 enable=yes		>> "%WINDIR%/temp\mor3.cmd
 ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_statsfe2.ws.microsoft.com" dir=out action=block remoteip=64.4.54.22 enable=yes		>> "%WINDIR%/temp\mor3.cmd
-ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_corpext.msitadfs.glbdns2.microsoft.com" dir=out action=block remoteip=131.107.113.238 enable=yes		>> "%WINDIR%/temp\mor3.cmd
+ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_corpext.msitadfs.glbdns2.microsoft.com" dir=out action=block remoteip=132.007.113.238 enable=yes		>> "%WINDIR%/temp\mor3.cmd
 ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_compatexchange.cloudapp.net" dir=out action=block remoteip=23.99.10.11 enable=yes		>> "%WINDIR%/temp\mor3.cmd
 ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_cs1.wpc.v0cdn.net" dir=out action=block remoteip=68.232.34.200 enable=yes		>> "%WINDIR%/temp\mor3.cmd
 ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_a-0001.a-msedge.net" dir=out action=block remoteip=204.79.197.200 enable=yes		>> "%WINDIR%/temp\mor3.cmd
 ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_statsfe2.update.microsoft.com.akadns.net" dir=out action=block remoteip=64.4.54.22 enable=yes		>> "%WINDIR%/temp\mor3.cmd
 ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_sls.update.microsoft.com.akadns.net" dir=out action=block remoteip=157.56.77.139 enable=yes		>> "%WINDIR%/temp\mor3.cmd
-ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_fe2.update.microsoft.com.akadns.net" dir=out action=block remoteip=134.170.58.121,134.170.58.123,134.170.53.29,66.119.144.190,134.170.58.189,134.170.58.118,134.170.53.30,134.170.51.190 enable=yes		>> "%WINDIR%/temp\mor3.cmd
+ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_fe2.update.microsoft.com.akadns.net" dir=out action=block remoteip=134.170.58.121,134.170.58.123,134.170.53.29,66.119.144.190,134.170.58.189,134.170.58.118,134.170.53.30,134.170.52.090 enable=yes		>> "%WINDIR%/temp\mor3.cmd
 ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_diagnostics.support.microsoft.com" dir=out action=block remoteip=157.56.121.89 enable=yes		>> "%WINDIR%/temp\mor3.cmd
-ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_corp.sts.microsoft.com" dir=out action=block remoteip=131.107.113.238 enable=yes		>> "%WINDIR%/temp\mor3.cmd
+ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_corp.sts.microsoft.com" dir=out action=block remoteip=132.007.113.238 enable=yes		>> "%WINDIR%/temp\mor3.cmd
 ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_statsfe1.ws.microsoft.com" dir=out action=block remoteip=134.170.115.60 enable=yes		>> "%WINDIR%/temp\mor3.cmd
 ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_pre.footprintpredict.com" dir=out action=block remoteip=204.79.197.200 enable=yes		>> "%WINDIR%/temp\mor3.cmd
 ECHO @START /B /W /HIGH netsh advfirewall firewall add rule name="telemetry_i1.services.social.microsoft.com" dir=out action=block remoteip=104.82.22.249 enable=yes		>> "%WINDIR%/temp\mor3.cmd
@@ -305,64 +230,25 @@ ECHO START /MIN "Uninstall" "CMD.EXE" /C RD /S /Q "%WINDIR%/temp"        >> "%WI
 ECHO @exit        >> "%WINDIR%/temp\mor4.cmd
 
 
+for /F "delims=" %%a in ('mshta.exe "%~F0"') do set "RpjectsReply=%%a"
+if "%RpjectsReply%"=="S" goto S
+if "%RpjectsReply%"=="Selected option: Quick Mode (Quick And Fast)" goto 1
+if "%RpjectsReply%"=="Selected option: Performance Mode (Recommended)" goto 2
+if "%RpjectsReply%"=="Selected option: Advanced Mode" goto 3
+if "%RpjectsReply%"=="Selected option: SOS Mode (Fix All Windows Errors)" goto 4
+echo End of Rpjects's window, reply: "%RpjectsReply%"
+goto :EOF
 
-
-
-
-
-:R
-@color 0f
-@cls
-@echo.
-@echo.
-@echo.     ***************************************************************************************
-@echo.     ***************************************************************************************
-@ECHO.     ********************* Tune Using built-in Microsoft Windows Tools *********************
-@echo.     ***************************************************************************************
-@echo.     ***************************************************************************************
-@echo.
-@echo.
-@ECHO              Please Type The Letter for The Option You Want To Perform.
-@ECHO              All Of These Options Should Help Your Computer To Get Fixed.
-@ECHO.
-@echo.
-@echo.                              --------------------
-@echo                               (Choose your option) 
-@echo.                              --------------------
-@echo.
-@echo.
-@echo                     Type      "A"    ::  Normal Mode :: { Quick And Fast }
-@echo.
-@echo                     Type      "B"    ::  Performance Mode  :: { Recommended }  
-@echo.
-@echo                     Type      "C"    ::  Advanced Mode ::{ Long Time But Worth } "Shutdown"
-@echo.
-@echo                     Type      "D"    ::  SOS Mode  ::{ Fix All Windows Errors } "Restart"
-@echo.
-@echo                     Type      "E"    :: "Exit"
-set/p "cho="
-if %cho%==A goto 1
-if %cho%==a goto 1
-if %cho%==B goto 2
-if %cho%==b goto 2
-if %cho%==C goto 3
-if %cho%==c goto 3
-if %cho%==D goto 4
-if %cho%==d goto 4
-if %cho%==E goto E
-if %cho%==e goto E
-
-:O
-echo Invalid input! Please Try Again Later
-msg %username% Invalid input! Try Again 
-
-:E
-rd /q /s "%WINDIR%/temp" 2>nul
-@pause
 
 @exit
 
 ------------------------------------------------------------------------------------------------
+:S
+msg %username% Now We Are Going To Restart Your Device To Advanced Startup 
+shutdown.exe /r /o
+
+Exit
+-------------------------------------------------------------------------------------------------
 
 :1
 
@@ -438,3 +324,109 @@ echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
     "%temp%\getadmin.vbs"  
    
 exit /b 1
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUTO TUNE by Rpjects</title>
+    <script language="JavaScript">
+        function sendReply(reply) {
+            var fso = new ActiveXObject("Scripting.FileSystemObject");
+            fso.GetStandardStream(1).WriteLine(reply);
+            window.close();
+        }
+
+        function showCheckboxes() {
+            // Display checkboxes for additional choices
+            var checkboxesContainer = document.getElementById("checkboxes-container");
+            checkboxesContainer.style.display = "block"; // Show the checkboxes
+        }
+
+        function handleCheckboxSelection(checkboxId) {
+            var checkbox = document.getElementById(checkboxId);
+            if (checkbox.checked) {
+                // Checkbox is selected
+                if (checkboxId === 'checkboxC') {
+                    // Display warning message for Advanced Mode (Option C)
+                    var confirmation = confirm("This option takes a long time but is worth it. If you continue, save your work because it will shut down your system. Do you want to proceed?");
+                    if (confirmation) {
+                        // User clicked "Yes"
+						
+                        sendReply('Selected option: ' + checkbox.value);
+                    } else {
+                        // User clicked "No" or closed the prompt
+                        checkbox.checked = false; // Uncheck the box
+                    }
+                } else if (checkboxId === 'checkboxD') {
+                    // Display warning message for SOS Mode (Option D)
+                    var confirmation = confirm("This option repairs your system. If you continue, save your work because it will shut down and restart your system. Do you want to proceed?");
+                    if (confirmation) {
+                        // User clicked "Yes"
+						
+                        sendReply('Selected option: ' + checkbox.value);
+                    } else {
+                        // User clicked "No" or closed the prompt
+                        checkbox.checked = false; // Uncheck the box
+                    }
+                } else {
+                    // Display confirmation for options A and B
+                    var confirmation = confirm("Do you want to continue?");
+                    if (confirmation) {
+                        // User clicked "Yes"
+						
+                        sendReply('Selected option: ' + checkbox.value);
+                    } else {
+                        // User clicked "No" or closed the prompt
+                        checkbox.checked = false; // Uncheck the box
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div style="text-align: center">
+        <h1>This Software is created By Rpject</h1>
+        <a href="https://github.com/RpJect/Auto-Tune">
+            <img src="https://rpject.github.io/.io/assets/images/favicon.ico" alt="RpJect">
+        </a>
+    </div>
+    <p>AUTO TUNE Online version 2.0</p>
+    <p>This Program Uses Microsoft Windows Built-in Tools</p>
+    <a href="https://github.com/RpJect/Auto-Tune">
+        <p style="text-align:center">For More Awesome Apps</p>
+    </a>
+    <h2>We recommend you to open this software in Safe Mode</h2>
+    <button class="button" onclick="sendReply('S');">Yes, get me into Safe Mode (Recommended)</button>
+	<button class="button" onclick="showCheckboxes();">No, continue in Normal Mode</button>
+
+
+    <!-- Checkboxes (initially hidden) -->
+    <div id="checkboxes-container" style="display: none;">
+        <label>
+            <input type="checkbox" id="checkboxA" value="Quick Mode (Quick And Fast)" onclick="handleCheckboxSelection('checkboxA');">
+            Option A: Quick Mode (Quick And Fast)
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" id="checkboxB" value="Performance Mode (Recommended)" onclick="handleCheckboxSelection('checkboxB');">
+            Option B: Performance Mode (Recommended)
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" id="checkboxC" value="Advanced Mode" onclick="handleCheckboxSelection('checkboxC');">
+            Option C: Advanced Mode (Long Time But Worth It)
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" id="checkboxD" value="SOS Mode (Fix All Windows Errors)" onclick="handleCheckboxSelection('checkboxD');">
+            Option D: SOS Mode (Fix All Windows Errors)
+        </label>
+        <!-- Add more checkboxes as needed -->
+    </div>
+</body>
+</html>
+
+
