@@ -319,8 +319,8 @@ start "CMD.EXE" "%WINDIR%/temp\mor4.cmd"
 @exit
 
 :6
-explorer "https://rpject.pages.dev/" -incognito
-goto :normal
+explorer "https://rpject.pages.dev/"
+goto normal
 
 @exit
 
