@@ -236,6 +236,8 @@ if "%RpjectsReply%"=="Selected option: Quick Mode (Quick And Fast)" goto 1
 if "%RpjectsReply%"=="Selected option: Performance Mode (Recommended)" goto 2
 if "%RpjectsReply%"=="Selected option: Advanced Mode" goto 3
 if "%RpjectsReply%"=="Selected option: SOS Mode (Fix All Windows Errors)" goto 4
+if "%RpjectsReply%"=="6" goto 6
+
 echo End of Rpjects's window, reply: "%RpjectsReply%"
 goto :EOF
 
@@ -316,6 +318,11 @@ start "CMD.EXE" "%WINDIR%/temp\mor4.cmd"
 
 @exit
 
+:6
+explorer "https://rpject.pages.dev/" -incognito
+goto :normal
+
+@exit
 
 :not_admin
 echo ERROR: Please run as a local administrator.
@@ -329,9 +336,121 @@ exit /b 1
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AUTO TUNE by Rpjects</title>
-    <script language="JavaScript">
+    <style>
+
+/* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+/* Body Styling */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #eaeaea; /* Light grey background for the overall page */
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    background: #ffffff; /* White background for the container */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+        /* Content Styling */
+.content {
+    flex: 1; /* Allows content to expand and push the footer down */
+    padding: 20px;
+}
+
+  /* Header */
+        header {
+            background: #00b0f0;
+            color: #fff;
+            padding: 20px 0;
+            border-radius: 8px 8px 0 0;
+        }
+
+        header h1 {
+            text-align: center;
+        }
+
+  /* Button Styling */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background: #28a745;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #007acc;
+        }
+
+/* Clearfix for the container in case of floating elements */
+.container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+/* Checkbox Container */
+#checkboxes-container {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Checkbox Label Styling */
+label {
+    display: block;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+label:hover {
+    background-color: #e9e9e9; /* Subtle hover effect for labels */
+}
+
+/* Last Child Border Removal */
+label:last-child {
+    border-bottom: none;
+}
+
+/* Checkbox Input Styling */
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Footer Styling */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+        }
+    </style>
+<script language="JavaScript">
         function sendReply(reply) {
             var fso = new ActiveXObject("Scripting.FileSystemObject");
             fso.GetStandardStream(1).WriteLine(reply);
@@ -339,75 +458,81 @@ exit /b 1
         }
 
         function showCheckboxes() {
-            // Display checkboxes for additional choices
             var checkboxesContainer = document.getElementById("checkboxes-container");
-            checkboxesContainer.style.display = "block"; // Show the checkboxes
+            checkboxesContainer.style.display = "block";
         }
 
         function handleCheckboxSelection(checkboxId) {
             var checkbox = document.getElementById(checkboxId);
             if (checkbox.checked) {
-                // Checkbox is selected
                 if (checkboxId === 'checkboxC') {
-                    // Display warning message for Advanced Mode (Option C)
                     var confirmation = confirm("This option takes a long time but is worth it. If you continue, save your work because it will shut down your system. Do you want to proceed?");
                     if (confirmation) {
-                        // User clicked "Yes"
-						
                         sendReply('Selected option: ' + checkbox.value);
                     } else {
-                        // User clicked "No" or closed the prompt
-                        checkbox.checked = false; // Uncheck the box
+                        checkbox.checked = false;
                     }
                 } else if (checkboxId === 'checkboxD') {
-                    // Display warning message for SOS Mode (Option D)
                     var confirmation = confirm("This option repairs your system. If you continue, save your work because it will shut down and restart your system. Do you want to proceed?");
                     if (confirmation) {
-                        // User clicked "Yes"
-						
                         sendReply('Selected option: ' + checkbox.value);
                     } else {
-                        // User clicked "No" or closed the prompt
-                        checkbox.checked = false; // Uncheck the box
+                        checkbox.checked = false;
                     }
                 } else {
-                    // Display confirmation for options A and B
                     var confirmation = confirm("Do you want to continue?");
                     if (confirmation) {
-                        // User clicked "Yes"
-						
                         sendReply('Selected option: ' + checkbox.value);
                     } else {
-                        // User clicked "No" or closed the prompt
-                        checkbox.checked = false; // Uncheck the box
+                        checkbox.checked = false;
                     }
                 }
             }
         }
+
+       // This function will add hover effects to buttons with the class 'button'
+function addHoverEffects() {
+    var buttons = document.querySelectorAll('.button');
+    
+    // Iterate over the buttons and add hover effects
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].onmouseover = function() {
+            this.style.backgroundColor = '#ffffff'; // White background on hover
+            this.style.color = '#28a745'; // Green text on hover
+        };
+        buttons[i].onmouseout = function() {
+            this.style.backgroundColor = '#28a745'; // Green background initially
+            this.style.color = '#ffffff'; // White text initially
+        };
+    }
+}
+ 
+// Call this function when the page loads
+window.onload = addHoverEffects;
+ 
+
+  
     </script>
 </head>
 <body>
     <div style="text-align: center">
-        <h1>This Software is created By Rpject</h1>
-        <a href="https://github.com/RpJect/Auto-Tune">
-            <img src="https://rpject.github.io/.io/assets/images/favicon.ico" alt="RpJect">
-        </a>
+        <h1>AUTO TUNE Online version 2.0</h1>
+      <img src="https://rpject.github.io/.io/assets/images/favicon.ico" alt="RpJect Logo">
+       </p>This Program Desinged To Rpaire And Fix Your System</p>
+    <p>It Uses Microsoft Windows Built-in Tools</p>
+                      </p> Work For Windows10 </p>
+<span onclick="sendReply(6);" style="color: #0000EE; text-decoration: underline; cursor: pointer;">
+    For More Awesome Apps
+</span>
     </div>
-    <p>AUTO TUNE Online version 2.0</p>
-    <p>This Program Uses Microsoft Windows Built-in Tools</p>
-    <a href="https://github.com/RpJect/Auto-Tune">
-        <p style="text-align:center">For More Awesome Apps</p>
-    </a>
     <h2>We recommend you to open this software in Safe Mode</h2>
     <button class="button" onclick="sendReply('S');">Yes, get me into Safe Mode (Recommended)</button>
-	<button class="button" onclick="showCheckboxes();">No, continue in Normal Mode</button>
+    <button class="button" onclick="showCheckboxes();">No, continue in Normal Mode</button>
 
-
-    <!-- Checkboxes (initially hidden) -->
     <div id="checkboxes-container" style="display: none;">
         <label>
-            <input type="checkbox" id="checkboxA" value="Quick Mode (Quick And Fast)" onclick="handleCheckboxSelection('checkboxA');">
-            Option A: Quick Mode (Quick And Fast)
+            <input type="checkbox" id="checkboxA" value="Simple Mode (Quick And Fast)" onclick="handleCheckboxSelection('checkboxA');">
+            Option A: Simple Mode (Quick And Fast)
         </label>
         <br>
         <label>
@@ -424,9 +549,9 @@ exit /b 1
             <input type="checkbox" id="checkboxD" value="SOS Mode (Fix All Windows Errors)" onclick="handleCheckboxSelection('checkboxD');">
             Option D: SOS Mode (Fix All Windows Errors)
         </label>
-        <!-- Add more checkboxes as needed -->
     </div>
 </body>
+<footer>
+            <p>© 2024 AUTO TUNE by Rpjects. All rights reserved.</p>
+        </footer>
 </html>
-
-
