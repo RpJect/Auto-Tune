@@ -254,13 +254,10 @@ Exit
 
 :1
 
-
 start "CMD.EXE" "%WINDIR%/temp\mor1.cmd" 
 
 
-
 @exit
-
 
 
 :2
@@ -269,18 +266,13 @@ wmic.exe /Namespace:\\root\default Path SystemRestore Call CreateRestorePoint "<
 start "CMD.EXE" "%WINDIR%/temp\mor2.cmd" 
 
 
-
-
 @exit
-
-
 
 
 :3
 wmic.exe /Namespace:\\root\default Path SystemRestore Call CreateRestorePoint "<My Restore Point Name >", 100, 7
 
 start "CMD.EXE" "%WINDIR%/temp\mor3.cmd" 
-
 
 @echo off
 
@@ -304,14 +296,10 @@ ipconfig /flushdns
 @exit
 
 
-
-
 :4
 wmic.exe /Namespace:\\root\default Path SystemRestore Call CreateRestorePoint "<My Restore Point Name >", 100, 7
 
 start "CMD.EXE" "%WINDIR%/temp\mor4.cmd" 
-
-
 
 
 
@@ -332,6 +320,7 @@ exit /b 1
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AUTO TUNE by Rpjects</title>
     <script language="JavaScript">
@@ -342,70 +331,141 @@ exit /b 1
         }
 
         function showCheckboxes() {
-            // Display checkboxes for additional choices
             var checkboxesContainer = document.getElementById("checkboxes-container");
-            checkboxesContainer.style.display = "block"; // Show the checkboxes
+            checkboxesContainer.style.display = "block";
         }
 
         function handleCheckboxSelection(checkboxId) {
             var checkbox = document.getElementById(checkboxId);
             if (checkbox.checked) {
-                // Checkbox is selected
                 if (checkboxId === 'checkboxC') {
-                    // Display warning message for Advanced Mode (Option C)
                     var confirmation = confirm("This option takes a long time but is worth it. If you continue, save your work because it will shut down your system. Do you want to proceed?");
                     if (confirmation) {
-                        // User clicked "Yes"
-
                         sendReply('Selected option: ' + checkbox.value);
                     } else {
-                        // User clicked "No" or closed the prompt
-                        checkbox.checked = false; // Uncheck the box
+                        checkbox.checked = false;
                     }
                 } else if (checkboxId === 'checkboxD') {
-                    // Display warning message for SOS Mode (Option D)
                     var confirmation = confirm("This option repairs your system. If you continue, save your work because it will shut down and restart your system. Do you want to proceed?");
                     if (confirmation) {
-                        // User clicked "Yes"
-
                         sendReply('Selected option: ' + checkbox.value);
                     } else {
-                        // User clicked "No" or closed the prompt
-                        checkbox.checked = false; // Uncheck the box
+                        checkbox.checked = false;
                     }
                 } else {
-                    // Display confirmation for options A and B
                     var confirmation = confirm("Do you want to continue?");
                     if (confirmation) {
-                        // User clicked "Yes"
-
                         sendReply('Selected option: ' + checkbox.value);
                     } else {
-                        // User clicked "No" or closed the prompt
-                        checkbox.checked = false; // Uncheck the box
+                        checkbox.checked = false;
                     }
                 }
             }
         }
     </script>
+<style>	
+/* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+/* Body Styling */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #eaeaea; /* Light grey background for the overall page */
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: auto;
+    background: #ffffff; /* White background for the container */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+        /* Content Styling */
+.content {
+    flex: 1; /* Allows content to expand and push the footer down */
+    padding: 20px;
+}
+button {
+    background-color: transparent; /* or another default color */
+    border-radius: 15px;
+    /* other styles */
+}
+
+/* Clearfix for the container in case of floating elements */
+.container::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+/* Checkbox Container */
+#checkboxes-container {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Checkbox Label Styling */
+label {
+    display: block;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+/* Last Child Border Removal */
+label:last-child {
+    border-bottom: none;
+}
+/* Checkbox Input Styling */
+input[type="checkbox"] {
+    margin-right: 10px;
+}	
+</style>	
 </head>
 <body>
-    <div style="text-align: center">
-        <h1>This Software is created By Rpject</h1>
-        <a href="https://github.com/RpJect/Auto-Tune">
-            <img src="https://rpject.github.io/.io/assets/images/favicon.ico" alt="RpJect">
-        </a>
+     <div style="text-align: center">
+    <h1 style="
+    background-color: #333; /* Dark background */
+    color: #fff; /* White text */
+    padding: 5px; /* Reduced padding */
+    margin-top: 0; /* Remove default margin */
+    font-size: 24px; /* Smaller font size */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effect */
+    cursor: pointer; /* Change cursor to indicate it's clickable */
+" onmouseover="this.style.backgroundColor='#555';" onmouseout="this.style.backgroundColor='#333';">
+    AUTO TUNE Online version 2.0
+</h1>
+<img src="https://rpject.github.io/.io/assets/images/favicon.ico" alt="RpJect Logo">
+<p>
+    This Program is Designed To Repair And Fix Your System
+</p>
+    <p>It Uses Microsoft Windows Built-in Tools</p>
+                      </p> Work For Windows10 </p>
+<span onclick="sendReply(6);" style="color: #0000EE; text-decoration: underline; cursor: pointer;">
+    For More Awesome Apps
+</span>
     </div>
-    <p>AUTO TUNE Online version 2.0</p>
-    <p>This Program Uses Microsoft Windows Built-in Tools</p>
-    <a href="https://github.com/RpJect/Auto-Tune">
-        <p style="text-align:center">For More Awesome Apps</p>
-    </a>
     <h2>We recommend you to open this software in Safe Mode</h2>
-    <button class="button" onclick="sendReply('S');">Yes, get me into Safe Mode (Recommended)</button>
-	<button class="button" onclick="showCheckboxes();">No, continue in Normal Mode</button>
-
-
+    </div>
+<!-- Green Button -->
+<button onclick="sendReply('S');" onmouseover="this.style.backgroundColor='#4df574';" onmouseout="this.style.backgroundColor='#28a745';" style="border-radius: 50%; background-color: #28a745; cursor: pointer;">
+    Yes, get me into Safe Mode (Recommended)
+</button>
+<!-- Red Button -->
+<button onclick="showCheckboxes();" onmouseover="this.style.backgroundColor='#f5b3b4';" onmouseout="this.style.backgroundColor='#dc3545';" style="border-radius: 50%; background-color: #dc3545; cursor: pointer;">
+    No, continue in Normal Mode
+</button>
     <!-- Checkboxes (initially hidden) -->
     <div id="checkboxes-container" style="display: none;">
         <label>
@@ -430,4 +490,16 @@ exit /b 1
         <!-- Add more checkboxes as needed -->
     </div>
 </body>
+     <footer>
+    <p style="
+        text-align: center;
+        padding: 10px; /* Reduced padding */
+        background-color: #333;
+        color: #fff;
+        font-size: 14px; /* Smaller font size */
+        margin-top: 15px;
+        border-top: 4px solid #00b0f0;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+    ">© 2024 AUTO TUNE by Rpjects. All rights reserved.</p>
+</footer>
 </html>
