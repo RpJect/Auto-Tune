@@ -455,9 +455,9 @@ input[type="checkbox"] {
 <span onclick="sendReply(6);" style="color: #0000EE; text-decoration: underline; cursor: pointer;">
     For More Awesome Apps
 </span>
-    </div>
+    
     <h2>We recommend you to open this software in Safe Mode</h2>
-    </div>
+    
 <!-- Green Button -->
 <button onclick="sendReply('S');" onmouseover="this.style.backgroundColor='#4df574';" onmouseout="this.style.backgroundColor='#28a745';" style="border-radius: 50%; background-color: #28a745; cursor: pointer;">
     Yes, get me into Safe Mode (Recommended)
@@ -466,6 +466,7 @@ input[type="checkbox"] {
 <button onclick="showCheckboxes();" onmouseover="this.style.backgroundColor='#f5b3b4';" onmouseout="this.style.backgroundColor='#dc3545';" style="border-radius: 50%; background-color: #dc3545; cursor: pointer;">
     No, continue in Normal Mode
 </button>
+ </div>
     <!-- Checkboxes (initially hidden) -->
     <div id="checkboxes-container" style="display: none;">
         <label>
