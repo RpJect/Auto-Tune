@@ -236,9 +236,16 @@ if "%RpjectsReply%"=="Selected option: Quick Mode (Quick And Fast)" goto 1
 if "%RpjectsReply%"=="Selected option: Performance Mode (Recommended)" goto 2
 if "%RpjectsReply%"=="Selected option: Advanced Mode" goto 3
 if "%RpjectsReply%"=="Selected option: SOS Mode (Fix All Windows Errors)" goto 4
-
+if "%RpjectsReply%"=="5" goto 5
 
 echo End of Rpjects's window, reply: "%RpjectsReply%"
+
+:Clean Remnant
+rd /q /s "C:/temp" 2>nul
+rd /q /s "%WINDIR%/temp" 2>nul
+rd /q /s "%temp%" 2>nul
+MKDir "%WINDIR%/temp" 2>nul
+
 goto :EOF
 
 
@@ -306,8 +313,18 @@ start "CMD.EXE" "%WINDIR%/temp\mor4.cmd"
 
 @exit
 
+:5
+explorer "https://rpject.pages.dev/"
+
+:Clean Remnant
+rd /q /s "C:/temp" 2>nul
+rd /q /s "%WINDIR%/temp" 2>nul
+rd /q /s "%temp%" 2>nul
+MKDir "%WINDIR%/temp" 2>nul
 
 
+
+@exit
 :not_admin
 echo ERROR: Please run as a local administrator.
 echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"  
@@ -452,7 +469,7 @@ input[type="checkbox"] {
 </p>
     <p>It Uses Microsoft Windows Built-in Tools</p>
                       </p> Work For Windows10 </p>
-<span onclick="sendReply(6);" style="color: #0000EE; text-decoration: underline; cursor: pointer;">
+<span onclick="sendReply(5);" style="color: #0000EE; text-decoration: underline; cursor: pointer;">
     For More Awesome Apps
 </span>
     
