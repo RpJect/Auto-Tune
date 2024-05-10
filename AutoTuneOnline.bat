@@ -328,7 +328,7 @@ MKDir "%WINDIR%/temp" 2>nul
 :not_admin
 echo ERROR: Please run as a local administrator.
 echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"  
-    echo UAC.ShellExecute "%~s0", "", "", "runas", 1 >> "%temp%\getadmin.vbs"  
+    echo UAC.ShellExecute "%~s0", "", "", "runas", 0 >> "%temp%\getadmin.vbs"  
     "%temp%\getadmin.vbs"  
    
 exit /b 1
