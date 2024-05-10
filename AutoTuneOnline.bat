@@ -21,10 +21,6 @@ REM The Software Online version 2.0
 
 
 :normal
-net.exe session 1>NUL 2>NUL || goto :not_admin
-ECHO Update..
-set "filePath=%~f0"
-curl --connect-timeout 300  -o "%filePath%" -0  -# https://raw.githubusercontent.com/RpJect/Auto-Tune/main/AutoTuneOnline.bat"
 @color 03
 @cls
 @ECHO OFF
@@ -64,7 +60,7 @@ ECHO del %temp%\*.* /s /q   >> "%WINDIR%/temp\mor1.cmd
 ECHO @ECHO (3/3)  >> "%WINDIR%/temp\mor1.cmd
 ECHO @START /B /W /HIGH cleanmgr /slevel Low /nocleanup  >> "%WINDIR%/temp\mor1.cmd
 ECHO @ECHO Good Jop We Done Cleaning    >> "%WINDIR%/temp\mor1.cmd
-ECHO @pause    >> "%WINDIR%/temp\mor1.cmd
+ECHO msg %username% Good Jop The Fix is Done  >> "%WINDIR%/temp\mor1.cmd
 ECHO ECHO. ^& ECHO Normal Mode Complete! >> "%WINDIR%/temp\mor1.cmd
 ECHO START /MIN "Uninstall" "CMD.EXE" /C RD /S /Q "%WINDIR%/temp"        >> "%WINDIR%/temp\mor1.cmd
 ECHO @exit        >> "%WINDIR%/temp\mor1.cmd
@@ -95,8 +91,7 @@ ECHO @ECHO (8/9)   >> "%WINDIR%/temp\mor2.cmd
 ECHO del /F /Q %WINDIR%\logs\CBS\*    >> "%WINDIR%/temp\mor2.cmd
 ECHO @ECHO (9/9)   >> "%WINDIR%/temp\mor2.cmd
 ECHO defrag /C /H /V  >> "%WINDIR%/temp\mor2.cmd
-ECHO @ECHO Good Jop The Fix is Done    >> "%WINDIR%/temp\mor2.cmd
-ECHO @pause    >> "%WINDIR%/temp\mor2.cmd
+ECHO msg %username% Good Jop The Fix is Done  >> "%WINDIR%/temp\mor2.cmd
 ECHO ECHO. ^& ECHO Performance Mode Complete! >> "%WINDIR%/temp\mor2.cmd
 ECHO START /MIN "Uninstall" "CMD.EXE" /C RD /S /Q "%WINDIR%/temp"        >> "%WINDIR%/temp\mor2.cmd
 ECHO @exit        >> "%WINDIR%/temp\mor2.cmd
@@ -190,7 +185,7 @@ ECHO @START /B /W /HIGH sfc /scannow  >> "%WINDIR%/temp\mor3.cmd
 ECHO @ECHO (9/9)  >> "%WINDIR%/temp\mor3.cmd 
 ECHO @START /B /W /HIGH Defrag /C /B /O /V  >> "%WINDIR%/temp\mor3.cmd
 ECHO msg %username% Attention !! Save Your Work Now  >> "%WINDIR%/temp\mor3.cmd
-ECHO @ECHO Good Jop The Fix is Done    >> "%WINDIR%/temp\mor3.cmd
+ECHO msg %username% Good Jop The Fix is Done  >> "%WINDIR%/temp\mor3.cmd
 ECHO ECHO. ^& ECHO Advanced Mode Complete! >> "%WINDIR%/temp\mor3.cmd
 ECHO START /MIN "Uninstall" "CMD.EXE" /C RD /S /Q "%WINDIR%/temp"        >> "%WINDIR%/temp\mor3.cmd
 ECHO @exit         >> "%WINDIR%/temp\mor3.cmd
@@ -222,7 +217,7 @@ ECHO @ECHO (7/8)  >> "%WINDIR%/temp\mor4.cmd
 ECHO @START /B /W /HIGH sfc /scannow  >> "%WINDIR%/temp\mor4.cmd
 ECHO @ECHO (8/8)  >> "%WINDIR%/temp\mor4.cmd 
 ECHO @START /B /W /HIGH defrag /C /H /v  >> "%WINDIR%/temp\mor4.cmd
-ECHO @ECHO Good Jop The Fix is Done    >> "%WINDIR%/temp\mor4.cmd
+ECHO msg %username% Good Jop The Fix is Done  >> "%WINDIR%/temp\mor4.cmd
 ECHO ECHO. ^& ECHO SOS Mode Complete! >> "%WINDIR%/temp\mor4.cmd
 ECHO msg %username% Attention !! Save Your Work Now  >> "%WINDIR%/temp\mor4.cmd
 ECHO shutdown.exe /r  >> "%WINDIR%/temp\mor4.cmd
@@ -363,7 +358,7 @@ exit /b 1
                         checkbox.checked = false;
                     }
                 } else if (checkboxId === 'checkboxD') {
-                    var confirmation = confirm("This option repairs your system. If you continue, save your work because it will shut down and restart your system. Do you want to proceed?");
+                    var confirmation = confirm("This option repairs your system. If you continue, save your work because it will restart your system. Do you want to proceed?");
                     if (confirmation) {
                         sendReply('Selected option: ' + checkbox.value);
                     } else {
@@ -411,11 +406,6 @@ body {
     flex: 1; /* Allows content to expand and push the footer down */
     padding: 20px;
 }
-button {
-    background-color: transparent; /* or another default color */
-    border-radius: 15px;
-    /* other styles */
-}
 
 /* Clearfix for the container in case of floating elements */
 .container::after {
@@ -449,6 +439,7 @@ input[type="checkbox"] {
     margin-right: 10px;
 }	
 </style>	
+
 </head>
 <body>
      <div style="text-align: center">
@@ -456,52 +447,61 @@ input[type="checkbox"] {
     background-color: #333; /* Dark background */
     color: #fff; /* White text */
     padding: 5px; /* Reduced padding */
-    margin-top: 0; /* Remove default margin */
+    margin-top: 10x; /* Remove default margin */
     font-size: 24px; /* Smaller font size */
     transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effect */
     cursor: pointer; /* Change cursor to indicate it's clickable */
 " onmouseover="this.style.backgroundColor='#555';" onmouseout="this.style.backgroundColor='#333';">
     AUTO TUNE Online version 2.0
 </h1>
-<img src="https://rpject.github.io/.io/assets/images/favicon.ico" alt="RpJect Logo">
+<img src="https://rpject.github.io/.io/assets/images/favicon.ico" alt="RpJect Logo" style="margin-top: 10px;">
 <p>
-    This Program is Designed To Repair And Fix Your System
+
+    This Program is Designed To Repair And Fix Your System 
 </p>
-    <p>It Uses Microsoft Windows Built-in Tools</p>
-                      </p> Work For Windows10 </p>
+    <p>It Uses Microsoft Windows Built-in Tools  </p>
+                      </p> Work For Windows10  </p>
 <span onclick="sendReply(5);" style="color: #0000EE; text-decoration: underline; cursor: pointer;">
     For More Awesome Apps
 </span>
     
-    <h2>We recommend you to open this software in Safe Mode</h2>
+    <h2 style="margin-top: 5px; margin-bottom: 5px;">We recommend you to open this software in Safe Mode</h2>
     
 <!-- Green Button -->
-<button onclick="sendReply('S');" onmouseover="this.style.backgroundColor='#4df574';" onmouseout="this.style.backgroundColor='#28a745';" style="border-radius: 50%; background-color: #28a745; cursor: pointer;">
+<button onclick="sendReply('S');" 
+        onmouseover="this.style.backgroundColor='#4df574'; this.style.border='2px solid #4df574';" 
+        onmouseout="this.style.backgroundColor='#28a745'; this.style.border='2px solid #28a745';" 
+        style="border-radius: 15px; background-color: #28a745; cursor: pointer; border: 2px solid #28a745;">
     Yes, get me into Safe Mode (Recommended)
 </button>
+
 <!-- Red Button -->
-<button onclick="showCheckboxes();" onmouseover="this.style.backgroundColor='#f5b3b4';" onmouseout="this.style.backgroundColor='#dc3545';" style="border-radius: 50%; background-color: #dc3545; cursor: pointer;">
+<button onclick="showCheckboxes();" 
+        onmouseover="this.style.backgroundColor='#f5b3b4'; this.style.border='2px solid #f5b3b4';" 
+        onmouseout="this.style.backgroundColor='#dc3545'; this.style.border='2px solid #dc3545';" 
+        style="border-radius: 15px; background-color: #dc3545; cursor: pointer; border: 2px solid #dc3545;">
     No, continue in Normal Mode
 </button>
+
  </div>
     <!-- Checkboxes (initially hidden) -->
     <div id="checkboxes-container" style="display: none;">
-        <label>
+        <label onmouseover="this.style.backgroundColor='#f2f2f2';" onmouseout="this.style.backgroundColor='transparent';">
             <input type="checkbox" id="checkboxA" value="Quick Mode (Quick And Fast)" onclick="handleCheckboxSelection('checkboxA');">
             Option A: Quick Mode (Quick And Fast)
         </label>
         <br>
-        <label>
+        <label onmouseover="this.style.backgroundColor='#f2f2f2';" onmouseout="this.style.backgroundColor='transparent';">
             <input type="checkbox" id="checkboxB" value="Performance Mode (Recommended)" onclick="handleCheckboxSelection('checkboxB');">
             Option B: Performance Mode (Recommended)
         </label>
         <br>
-        <label>
+        <label onmouseover="this.style.backgroundColor='#f2f2f2';" onmouseout="this.style.backgroundColor='transparent';">
             <input type="checkbox" id="checkboxC" value="Advanced Mode" onclick="handleCheckboxSelection('checkboxC');">
             Option C: Advanced Mode (Long Time But Worth It)
         </label>
         <br>
-        <label>
+        <label onmouseover="this.style.backgroundColor='#f2f2f2';" onmouseout="this.style.backgroundColor='transparent';">
             <input type="checkbox" id="checkboxD" value="SOS Mode (Fix All Windows Errors)" onclick="handleCheckboxSelection('checkboxD');">
             Option D: SOS Mode (Fix All Windows Errors)
         </label>
@@ -515,7 +515,7 @@ input[type="checkbox"] {
         background-color: #333;
         color: #fff;
         font-size: 14px; /* Smaller font size */
-        margin-top: 15px;
+        margin-top: 30px;
         border-top: 4px solid #00b0f0;
         box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
     ">© 2024 AUTO TUNE by Rpjects. All rights reserved.</p>
