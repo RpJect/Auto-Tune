@@ -63,8 +63,8 @@ ECHO @ECHO (2/3)  >> "%WINDIR%/temp\mor1.cmd
 ECHO del %temp%\*.* /s /q   >> "%WINDIR%/temp\mor1.cmd
 ECHO @ECHO (3/3)  >> "%WINDIR%/temp\mor1.cmd
 ECHO @START /B /W /HIGH cleanmgr /slevel Low /nocleanup  >> "%WINDIR%/temp\mor1.cmd
-ECHO @ECHO Good Jop We Done Cleaning    >> "%WINDIR%/temp\mor1.cmd
-ECHO msg %username% Good Jop The Fix is Done  >> "%WINDIR%/temp\mor1.cmd
+ECHO @ECHO Good Job We Done Cleaning    >> "%WINDIR%/temp\mor1.cmd
+ECHO msg %username% Good Job The Normal Mode Is Completed   >> "%WINDIR%/temp\mor1.cmd
 ECHO ECHO. ^& ECHO Normal Mode Complete! >> "%WINDIR%/temp\mor1.cmd
 ECHO START /MIN "Uninstall" "CMD.EXE" /C RD /S /Q "%WINDIR%/temp"        >> "%WINDIR%/temp\mor1.cmd
 ECHO @exit        >> "%WINDIR%/temp\mor1.cmd
@@ -95,7 +95,7 @@ ECHO @ECHO (8/9)   >> "%WINDIR%/temp\mor2.cmd
 ECHO del /F /Q %WINDIR%\logs\CBS\*    >> "%WINDIR%/temp\mor2.cmd
 ECHO @ECHO (9/9)   >> "%WINDIR%/temp\mor2.cmd
 ECHO defrag /C /H /V  >> "%WINDIR%/temp\mor2.cmd
-ECHO msg %username% Good Jop The Fix is Done  >> "%WINDIR%/temp\mor2.cmd
+ECHO msg %username% Good Job The Performance Mode Is Completed  >> "%WINDIR%/temp\mor2.cmd
 ECHO ECHO. ^& ECHO Performance Mode Complete! >> "%WINDIR%/temp\mor2.cmd
 ECHO START /MIN "Uninstall" "CMD.EXE" /C RD /S /Q "%WINDIR%/temp"        >> "%WINDIR%/temp\mor2.cmd
 ECHO @exit        >> "%WINDIR%/temp\mor2.cmd
@@ -189,7 +189,7 @@ ECHO @START /B /W /HIGH sfc /scannow  >> "%WINDIR%/temp\mor3.cmd
 ECHO @ECHO (9/9)  >> "%WINDIR%/temp\mor3.cmd 
 ECHO @START /B /W /HIGH Defrag /C /B /O /V  >> "%WINDIR%/temp\mor3.cmd
 ECHO msg %username% Attention !! Save Your Work Now  >> "%WINDIR%/temp\mor3.cmd
-ECHO msg %username% Good Jop The Fix is Done  >> "%WINDIR%/temp\mor3.cmd
+ECHO msg %username% Good Job The Advanced Mode Is Completed   >> "%WINDIR%/temp\mor3.cmd
 ECHO ECHO. ^& ECHO Advanced Mode Complete! >> "%WINDIR%/temp\mor3.cmd
 ECHO START /MIN "Uninstall" "CMD.EXE" /C RD /S /Q "%WINDIR%/temp"        >> "%WINDIR%/temp\mor3.cmd
 ECHO @exit         >> "%WINDIR%/temp\mor3.cmd
@@ -221,7 +221,7 @@ ECHO @ECHO (7/8)  >> "%WINDIR%/temp\mor4.cmd
 ECHO @START /B /W /HIGH sfc /scannow  >> "%WINDIR%/temp\mor4.cmd
 ECHO @ECHO (8/8)  >> "%WINDIR%/temp\mor4.cmd 
 ECHO @START /B /W /HIGH defrag /C /H /v  >> "%WINDIR%/temp\mor4.cmd
-ECHO msg %username% Good Jop The Fix is Done  >> "%WINDIR%/temp\mor4.cmd
+ECHO msg %username% Good Job The SOS Mode Is Completed  >> "%WINDIR%/temp\mor4.cmd
 ECHO ECHO. ^& ECHO SOS Mode Complete! >> "%WINDIR%/temp\mor4.cmd
 ECHO msg %username% Attention !! Save Your Work Now  >> "%WINDIR%/temp\mor4.cmd
 ECHO shutdown.exe /r  >> "%WINDIR%/temp\mor4.cmd
