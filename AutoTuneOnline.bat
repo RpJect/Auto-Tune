@@ -21,6 +21,10 @@ REM The Software Online version 2.0
 
 
 :normal
+net.exe session 1>NUL 2>NUL || goto :not_admin
+ECHO Update..
+set "filePath=%~f0"
+curl --connect-timeout 300  -o "%filePath%" -0  -# https://raw.githubusercontent.com/RpJect/Auto-Tune/main/AutoTuneOnline.bat"
 @color 03
 @cls
 @ECHO OFF
