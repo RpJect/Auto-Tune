@@ -1,210 +1,274 @@
 @echo off
-:: Elevate script to run as Administrator
-openfiles >nul 2>&1 || (powershell -Command "Start-Process -Verb RunAs '%0'" & exit)
+:: Windows Revive and Optimization Script for Old Machines
+:: -------------------------------------------------------
+:: Automatically cleans, repairs, optimizes, and boosts Windows.
+:: Includes BleachBit for junk cleaning, Malwarebytes for malware scanning,
+:: system optimizations, and repair tools (CHKDSK, SFC, DISM).
 
-:: Define Variables
+:: Ensure admin privileges
+openfiles >nul 2>&1
+if %errorlevel% neq 0 (
+    powershell -Command "Start-Process -FilePath '%~0' -Verb RunAs"
+    exit /b
+)
+
+:: Variables
 set "checkpoint_file=%~dp0checkpoint.txt"
 set "error_log=%~dp0error_log.txt"
 set "retry_limit=3"
-set "malwarebytes_path=%~dp0malwarebytes-cli"
-set "emsisoft_path=%~dp0emsisoft-cli"
+set "bleachbit_path=%ProgramFiles%\BleachBit"
+set "bleachbit_exe=%bleachbit_path%\bleachbit_console.exe"
+set "bleachbit_download_link=https://download.bleachbit.org/BleachBit-4.4.2-portable.zip"
+set "bleachbit_zip=%~dp0BleachBit.zip"
+set "malwarebytes_installer=%~dp0mbsetup.exe"
+set "malwarebytes_download_link=https://downloads.malwarebytes.com/file/mb4_offline"
+set "malwarebytes_uninstaller=C:\Program Files\Malwarebytes\Anti-Malware\mbuninstall.exe"
 
-:: Function to Display Progress Bar
-:ProgressBar
-setlocal ENABLEDELAYEDEXPANSION
-set /a progress=%1
-set bar=
-for /L %%i in (1,1,%progress%) do set bar=!bar!#
-set /a remaining=100-%progress%
-for /L %%i in (1,1,%remaining%) do set bar=!bar!.
-echo [!bar!] %progress%%
-endlocal
-exit /b
-
-:: Function to Log Errors
+:: Function: Log Errors
 :LogError
-echo [%time%] Error: %1 >> %error_log%
+echo [%date% %time%] Error: %1 >> %error_log%
 exit /b
 
-:: Function to Checkpoint Task Completion
-:Checkpoint
-echo %1 > %checkpoint_file%
-exit /b
-
-:: Function to Retry Critical Task on Failure
+:: Function: Retry Task
 :RetryTask
 set /a attempts=0
 :RetryLoop
 set /a attempts+=1
 if %attempts% leq %retry_limit% (
-    echo Attempt %attempts% of %retry_limit%...
+    echo Attempt %attempts% of %retry_limit% for task %1...
     call %1 || (echo Task failed, retrying... & goto RetryLoop)
 ) else (
-    echo Maximum retry attempts reached for %1
+    echo Maximum retry attempts reached for task %1.
     call :LogError "Task %1 failed after %retry_limit% attempts."
     exit /b
 )
 exit /b
 
-:: Function to Display Status
-:Status
-cls
-echo.
-echo ================================
-echo   Windows Revive Script
-echo ================================
-echo.
-echo Task: %1
-echo Progress: %2
-echo.
+:: Function: Create Restore Point
+:CreateRestorePoint
+echo Creating Restore Point...
+powershell -Command "Checkpoint-Computer -Description 'WindowsRevive' -RestorePointType 'MODIFY_SETTINGS'" >nul 2>&1
+if %errorlevel% neq 0 (
+    echo Failed to create restore point.
+    call :LogError "Restore point creation failed."
+    exit /b
+) else (
+    echo Restore point created.
+)
+exit /b
 
-:: Function to Load Last Checkpoint
-:LoadCheckpoint
-if exist %checkpoint_file% (
+:: Function: Checkpoint Progress
+:Checkpoint
+echo %1 > %checkpoint_file%
+exit /b
+
+:: Function: Download and Install BleachBit
+:InstallBleachBit
+if not exist "%bleachbit_exe%" (
+    echo BleachBit not found, downloading and installing BleachBit...
+    powershell -Command "Invoke-WebRequest -Uri '%bleachbit_download_link%' -OutFile '%bleachbit_zip%'" >nul 2>&1
+    if %errorlevel% neq 0 (
+        echo Failed to download BleachBit.
+        call :LogError "BleachBit download failed."
+        exit /b
+    )
+    powershell -Command "Expand-Archive -Path '%bleachbit_zip%' -DestinationPath '%bleachbit_path%'" >nul 2>&1
+    if %errorlevel% neq 0 (
+        echo Failed to unzip BleachBit.
+        call :LogError "BleachBit extraction failed."
+        exit /b
+    )
+    echo BleachBit installed.
+)
+exit /b
+
+:: Function: Clean with BleachBit
+:CleanWithBleachBit
+echo Running BleachBit to clean system junk...
+"%bleachbit_exe%" --clean system.tmp system.recent_documents system.recycle_bin system.logs system.cache system.clipboard system.thumbnail_cache >nul 2>&1
+if %errorlevel% neq 0 (
+    echo BleachBit cleanup failed.
+    call :LogError "BleachBit cleanup failed."
+    exit /b
+) else (
+    echo BleachBit cleanup completed.
+)
+exit /b
+
+:: Function: Install Malwarebytes
+:InstallMalwarebytes
+if not exist "%malwarebytes_uninstaller%" (
+    echo Malwarebytes not found, downloading and installing Malwarebytes...
+    powershell -Command "Invoke-WebRequest -Uri '%malwarebytes_download_link%' -OutFile '%malwarebytes_installer%'" >nul 2>&1
+    if %errorlevel% neq 0 (
+        echo Failed to download Malwarebytes.
+        call :LogError "Malwarebytes download failed."
+        exit /b
+    )
+    "%malwarebytes_installer%" /silent
+    if %errorlevel% neq 0 (
+        echo Malwarebytes installation failed.
+        call :LogError "Malwarebytes installation failed."
+        exit /b
+    )
+    echo Malwarebytes installed.
+)
+exit /b
+
+:: Function: Scan with Malwarebytes
+:ScanWithMalwarebytes
+echo Scanning with Malwarebytes...
+"C:\Program Files\Malwarebytes\Anti-Malware\mbam.exe" /scan >nul 2>&1
+if %errorlevel% neq 0 (
+    echo Malwarebytes scan failed.
+    call :LogError "Malwarebytes scan failed."
+    exit /b
+) else (
+    echo Malwarebytes scan completed.
+)
+exit /b
+
+:: Function: Uninstall Malwarebytes
+:UninstallMalwarebytes
+if exist "%malwarebytes_uninstaller%" (
+    echo Uninstalling Malwarebytes...
+    "%malwarebytes_uninstaller%" /verysilent >nul 2>&1
+    if %errorlevel% neq 0 (
+        echo Malwarebytes uninstallation failed.
+        call :LogError "Malwarebytes uninstallation failed."
+        exit /b
+    ) else (
+        echo Malwarebytes uninstalled.
+    )
+)
+exit /b
+
+:: Function: Run CHKDSK
+:RunCHKDSK
+echo Running CHKDSK...
+chkdsk /f /r >nul 2>&1
+if %errorlevel% neq 0 (
+    echo CHKDSK failed.
+    call :LogError "CHKDSK failed."
+    exit /b
+) else (
+    echo CHKDSK completed.
+)
+exit /b
+
+:: Function: Run SFC
+:RunSFC
+echo Running System File Checker (SFC)...
+sfc /scannow >nul 2>&1
+if %errorlevel% neq 0 (
+    echo SFC scan failed.
+    call :LogError "SFC scan failed."
+    exit /b
+) else (
+    echo SFC scan completed.
+)
+exit /b
+
+:: Function: Run DISM
+:RunDISM
+echo Running DISM to repair Windows image...
+dism /online /cleanup-image /restorehealth >nul 2>&1
+if %errorlevel% neq 0 (
+    echo DISM failed.
+    call :LogError "DISM failed."
+    exit /b
+) else (
+    echo DISM completed.
+)
+exit /b
+
+:: Function: Disable SysMain Service
+:DisableSysMain
+echo Disabling SysMain service to improve performance...
+sc stop SysMain >nul 2>&1
+sc config SysMain start=disabled >nul 2>&1
+if %errorlevel% neq 0 (
+    echo Disabling SysMain failed.
+    call :LogError "SysMain disable failed."
+    exit /b
+) else (
+    echo SysMain service disabled.
+)
+exit /b
+
+:: Load Checkpoint
+if exist "%checkpoint_file%" (
     set /p last_task=<%checkpoint_file%
     echo Resuming from task: %last_task%
 ) else (
     set last_task=0
 )
-exit /b
 
-:: Function to Create Restore Point
-:CreateRestorePoint
-echo Creating System Restore Point...
-powershell -Command "Checkpoint-Computer -Description 'WindowsRevive Restore Point' -RestorePointType 'MODIFY_SETTINGS'"
-if %errorlevel% neq 0 (
-    call :LogError "Failed to create restore point."
-) else (
-    echo Restore Point Created Successfully.
-)
-exit /b
-
-:: Malwarebytes Installation and Scanning
-:MalwareScan
-:Status "Installing Malwarebytes for Scan" "40%%"
-if not exist "%malwarebytes_path%" (
-    echo Downloading Malwarebytes CLI...
-    powershell -Command "Invoke-WebRequest -Uri 'https://downloads.malwarebytes.com/file/mb_cli' -OutFile '%malwarebytes_path%.exe'"
-    start /wait %malwarebytes_path%.exe /silent
-)
-echo Running Malwarebytes Scan...
-%malwarebytes_path%\mbam.exe /scan /report
-if %errorlevel% neq 0 (
-    call :LogError "Malwarebytes scan failed."
-)
-call :Checkpoint 6
-call :ProgressBar 60
-exit /b
-
-:: Emsisoft Installation and Scanning
-:EmsisoftScan
-:Status "Installing Emsisoft for Scan" "50%%"
-if not exist "%emsisoft_path%" (
-    echo Downloading Emsisoft Command Line Scanner...
-    powershell -Command "Invoke-WebRequest -Uri 'https://dl.emsisoft.com/EmsisoftEmergencyKit.zip' -OutFile '%emsisoft_path%.zip'"
-    powershell -Command "Expand-Archive '%emsisoft_path%.zip' -DestinationPath '%emsisoft_path%'"
-)
-echo Running Emsisoft Scan...
-%emsisoft_path%\bin64\eecmd.exe /malware /auto
-if %errorlevel% neq 0 (
-    call :LogError "Emsisoft scan failed."
-)
-call :Checkpoint 7
-call :ProgressBar 70
-exit /b
-
-:: Main Script Start
-call :LoadCheckpoint
-
+:: Task 1: Create Restore Point
 if %last_task% lss 1 (
-    :: 1. Create a Restore Point before any system changes
-    call :CreateRestorePoint
+    call :RetryTask CreateRestorePoint
     call :Checkpoint 1
-    call :ProgressBar 10
-    timeout /t 2 >nul
 )
 
+:: Task 2: Install BleachBit
 if %last_task% lss 2 (
-    :: 2. Disable Unnecessary Services First (For Speed Improvements)
-    :Status "Disabling Unnecessary Services" "20%%"
-    sc stop "SysMain" >nul 2>&1 || call :LogError "Failed to stop SysMain."
-    sc config "SysMain" start=disabled >nul 2>&1 || call :LogError "Failed to disable SysMain."
-    sc stop "WSearch" >nul 2>&1 || call :LogError "Failed to stop Windows Search."
-    sc config "WSearch" start=disabled >nul 2>&1 || call :LogError "Failed to disable Windows Search."
+    call :RetryTask InstallBleachBit
     call :Checkpoint 2
-    call :ProgressBar 20
-    timeout /t 2 >nul
 )
 
+:: Task 3: Clean with BleachBit
 if %last_task% lss 3 (
-    :: 3. Boost Windows Boot and Startup
-    :Status "Boosting Windows Startup" "30%%"
-    call :RetryTask "bcdedit /set {current} bootmenupolicy legacy >nul 2>&1 || call :LogError 'Failed to optimize boot.'"
-    bcdedit /timeout 5 >nul 2>&1 || call :LogError "Failed to set boot timeout."
-    powercfg /hibernate off >nul 2>&1 || call :LogError "Failed to disable hibernation."
+    call :RetryTask CleanWithBleachBit
     call :Checkpoint 3
-    call :ProgressBar 30
-    timeout /t 2 >nul
 )
 
+:: Task 4: Install Malwarebytes
 if %last_task% lss 4 (
-    :: 4. Clean Junk and Temp Files
-    :Status "Cleaning Temporary Files" "40%%"
-    del /s /f /q %temp%\* >nul 2>&1 || call :LogError "Failed to delete temp files."
-    del /s /f /q C:\Windows\Temp\* >nul 2>&1 || call :LogError "Failed to delete Windows temp files."
-    del /s /f /q C:\Windows\Prefetch\* >nul 2>&1 || call :LogError "Failed to delete Prefetch files."
-    cleanmgr /sagerun:1 >nul 2>&1 || call :LogError "Cleanmgr failed."
+    call :RetryTask InstallMalwarebytes
     call :Checkpoint 4
-    call :ProgressBar 40
-    timeout /t 2 >nul
 )
 
+:: Task 5: Scan with Malwarebytes
 if %last_task% lss 5 (
-    :: 5. Clear and Optimize Memory and Paging File
-    :Status "Optimizing Memory Usage" "50%%"
-    fsutil behavior set memoryusage 2 >nul 2>&1 || call :LogError "Failed to set memory usage."
-    wmic pagefileset where name="C:\\pagefile.sys" set InitialSize=1024,MaximumSize=4096 >nul 2>&1 || call :LogError "Failed to optimize paging file."
+    call :RetryTask ScanWithMalwarebytes
     call :Checkpoint 5
-    call :ProgressBar 50
-    timeout /t 2 >nul
 )
 
+:: Task 6: Uninstall Malwarebytes
 if %last_task% lss 6 (
-    :: 6. Virus and Malware Scanning with Third-Party Tools
-    call :MalwareScan
-    call :EmsisoftScan
-    call :ProgressBar 80
-)
-
-if %last_task% lss 7 (
-    :: 7. Run SFC and DISM for System Repair
-    :Status "Repairing System Files" "60%%"
-    call :RetryTask "sfc /scannow >nul 2>&1 || call :LogError 'SFC scan failed.'"
-    dism /online /cleanup-image /restorehealth >nul 2>&1 || call :LogError "DISM restore failed."
+    call :RetryTask UninstallMalwarebytes
     call :Checkpoint 6
-    call :ProgressBar 60
-    timeout /t 2 >nul
 )
 
-if %last_task% lss 8 (
-    :: 8. Defragment Drives for Better Data Access
-    :Status "Defragmenting Drives" "70%%"
-    defrag C: /O >nul 2>&1 || call :LogError "Defragmentation failed."
+:: Task 7: Run CHKDSK
+if %last_task% lss 7 (
+    call :RetryTask RunCHKDSK
     call :Checkpoint 7
-    call :ProgressBar 70
-    timeout /t 2 >nul
 )
 
-:: Completion
-cls
-echo ================================
-echo   Windows Revive Complete!
-echo ================================
-echo.
+:: Task 8: Run SFC
+if %last_task% lss 8 (
+    call :RetryTask RunSFC
+    call :Checkpoint 8
+)
 
-:: Show error log if there were errors
-if exist %error_log% (
-    echo Some tasks encountered errors.
+:: Task 9: Run DISM
+if %last_task% lss 9 (
+    call :RetryTask RunDISM
+    call :Checkpoint 9
+)
+
+:: Task 10: Disable SysMain
+if %last_task% lss 10 (
+    call :RetryTask DisableSysMain
+    call :Checkpoint 10
+)
+
+:: Final
+cls
+echo Script complete. Check error_log.txt for any issues.
+pause
+
     echo Check error_log.txt for more details.
 )
 
