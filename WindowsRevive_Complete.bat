@@ -1,9 +1,6 @@
 @echo off
 :: Windows Revive and Optimization Script for Old Machines
-:: -------------------------------------------------------
-:: Automatically cleans, repairs, optimizes, and boosts Windows.
-:: Includes BleachBit for junk cleaning, Malwarebytes for malware scanning,
-:: system optimizations, and repair tools (CHKDSK, SFC, DISM).
+:: Enhanced with better error handling and logging
 
 :: Ensure admin privileges
 openfiles >nul 2>&1
@@ -29,16 +26,18 @@ set "malwarebytes_uninstaller=C:\Program Files\Malwarebytes\Anti-Malware\mbunins
 echo [%date% %time%] Error: %1 >> %error_log%
 exit /b
 
-:: Function: Retry Task
+:: Function: Retry Task with Detailed Logging
 :RetryTask
 set /a attempts=0
 :RetryLoop
 set /a attempts+=1
 if %attempts% leq %retry_limit% (
     echo Attempt %attempts% of %retry_limit% for task %1...
-    call %1 || (echo Task failed, retrying... & goto RetryLoop)
+    call %1 > "%~dp0%1_output.txt" 2>&1 || (
+        echo Task %1 failed. Check %1_output.txt for details. Retrying... & goto RetryLoop
+    )
 ) else (
-    echo Maximum retry attempts reached for task %1.
+    echo Maximum retry attempts reached for task %1. Check %1_output.txt for error details.
     call :LogError "Task %1 failed after %retry_limit% attempts."
     exit /b
 )
@@ -268,8 +267,3 @@ if %last_task% lss 10 (
 cls
 echo Script complete. Check error_log.txt for any issues.
 pause
-
-    echo Check error_log.txt for more details.
-)
-
-exit /b
